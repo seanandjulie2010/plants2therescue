@@ -121,6 +121,35 @@ a:hover {
   border-bottom: 1px solid #e2e2e2;
 }
 
+/* Join group section */
+.join-group {
+  padding: 2rem 1rem;
+  background-color: #f7f5f0;
+  text-align: center;
+}
+
+.join-group h2 {
+  margin-bottom: 1rem;
+  color: #2f3e46;
+}
+
+.join-group p {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #444;
+}
+
+.join-group a {
+  color: #5c7a29;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.join-group a:hover {
+  text-decoration: underline;
+}
+
 .success h2 {
   margin-bottom: 1rem;
 }
