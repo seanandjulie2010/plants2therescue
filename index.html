@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants 2 the Rescue</title>
+    <!-- Google Fonts for a classic look that matches the logo -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header / Hero section -->
+    <header class="hero">
+        <div class="hero-content">
+        <!-- The logo image is stored locally in the same folder for portability -->
+        <img src="logo.png" alt="Plants 2 the Rescue logo" class="logo">
+            <h1>Plants 2 the Rescue</h1>
+            <p class="tagline">Transform your body and soul with whole‑food, plant‑based living</p>
+        </div>
+    </header>
+
+    <!-- About section -->
+    <section class="about">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p>At Plants 2 the Rescue we believe long‑term weight loss is about more than calorie counting — it’s about nourishing the mind, body and spirit while addressing the underlying causes of overeating. Our program centres around a vibrant, whole‑food plant‑based diet that fuels your body with nutrient‑dense foods, calms inflammation and supports sustainable change.</p>
+            <p>We combine vegan nutrition education with trauma‑informed coaching, mindful movement and spiritual practices to help you heal the root of why food became a coping mechanism. By integrating emotional awareness, compassionate self‑care and community support, we empower you to break free from patterns of overeating and create a life of balance, health and joy.</p>
+        </div>
+    </section>
+
+    <!-- Activities / Features section -->
+    <section class="features">
+        <div class="container features-grid">
+            <div class="feature">
+                <h3>Mind–Body Integration</h3>
+                <p>Learn mindfulness and meditation practices to help you tune into your body’s true hunger, process emotions and break the cycle of stress‑eating.</p>
+            </div>
+            <div class="feature">
+                <h3>Whole‑Food Vegan Nutrition</h3>
+                <p>Discover how vibrant fruits, vegetables, legumes and grains can nourish your body, promote weight loss and support healing from within.</p>
+            </div>
+            <div class="feature">
+                <h3>Trauma‑Informed Coaching</h3>
+                <p>We provide compassionate guidance to uncover and address the emotional roots of overeating so you can build healthier coping strategies.</p>
+            </div>
+            <div class="feature">
+                <h3>Supportive Community</h3>
+                <p>Connect with others on the same journey, share experiences and celebrate victories together in our safe, judgment‑free space.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section with form and Facebook link -->
+    <section class="contact">
+        <div class="container contact-wrapper">
+            <h2>Get in Touch</h2>
+            <p>Have a question, want to get involved or just say hello? Drop us a message! Submitting the form will redirect you to our Facebook community group where we continue the conversation. You can also email us directly at <a href="mailto:seantomlinson33@gmail.com">seantomlinson33@gmail.com</a> or <a href="mailto:headed2@protonmail.com">headed2@protonmail.com</a>.</p>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit">Send Message &amp; Join Our Group</button>
+            </form>
+            <noscript>
+                <p><strong>Note:</strong> JavaScript is required to redirect you to our Facebook group. If you prefer, you can <a href="https://www.facebook.com/groups/1243951472977733" target="_blank">click here to join directly</a>.</p>
+            </noscript>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; <span id="year"></span> Plants 2 the Rescue. All rights reserved.</p>
+            <p><a href="https://www.facebook.com/groups/1243951472977733" target="_blank">Join our Facebook Group</a> and become part of our green community!</p>
+        </div>
+    </footer>
+
+    <!-- Script to update the year and handle form submission -->
+    <script>
+        // Insert current year into footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        // Handle form submission: redirect to Facebook group
+        function handleSubmit(event) {
+            event.preventDefault();
+            // Optionally, we could collect form values here for processing in future.
+            window.location.href = 'https://www.facebook.com/groups/1243951472977733';
+        }
+    </script>
+</body>
+</html>
