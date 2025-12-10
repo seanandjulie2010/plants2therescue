@@ -150,6 +150,58 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Navigation menu styles */
+.site-nav {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 1rem;
+}
+
+.site-nav a {
+  color: #5c7a29;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Section styles for recipes, links and success stories */
+.recipes,
+.links,
+.success-stories {
+  padding: 2rem 1rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e2e2;
+  text-align: center;
+}
+
+.recipes h2,
+.links h2,
+.success-stories h2 {
+  margin-bottom: 1rem;
+  color: #2f3e46;
+}
+
+.recipes p,
+.links p,
+.success-stories p {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #444;
+}
+
 .success h2 {
   margin-bottom: 1rem;
 }
