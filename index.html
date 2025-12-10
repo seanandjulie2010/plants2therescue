@@ -52,6 +52,16 @@
         </div>
     </section>
 
+    <!-- Success story section showcasing plant‑based transformation -->
+    <section class="success">
+        <div class="container">
+            <h2>Real Results</h2>
+            <!-- Image illustrating the transformational power of a plant‑based lifestyle -->
+            <img src="transformation.jpg" alt="Before and after transformation through plant‑based living">
+            <p>Witness the incredible journey from struggling with weight to thriving with vitality. This powerful before‑and‑after image showcases how healing the mind, body and spirit through a whole‑food, plant‑based diet and compassionate self‑care can lead to lasting, transformational change.</p>
+        </div>
+    </section>
+
     <!-- Contact section with form and Facebook link -->
     <section class="contact">
         <div class="container contact-wrapper">
@@ -84,11 +94,30 @@
     <script>
         // Insert current year into footer
         document.getElementById('year').textContent = new Date().getFullYear();
-        // Handle form submission: redirect to Facebook group
+        // Handle form submission: send email and then redirect to Facebook group
         function handleSubmit(event) {
             event.preventDefault();
-            // Optionally, we could collect form values here for processing in future.
-            window.location.href = 'https://www.facebook.com/groups/1243951472977733';
+            // Collect form values
+            const name = document.getElementById('name').value.trim();
+            const senderEmail = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            // Construct the email subject and body
+            const subject = encodeURIComponent('Plants 2 the Rescue contact form submission');
+            const bodyLines = [
+                `Name: ${name}`,
+                `Email: ${senderEmail}`,
+                'Message:',
+                message
+            ];
+            const body = encodeURIComponent(bodyLines.join('\n'));
+            // Create a mailto link to send the message to the specified email address
+            const mailtoLink = `mailto:seantomlinson33@gmail.com?subject=${subject}&body=${body}`;
+            // Open the mail client to send the email
+            window.location.href = mailtoLink;
+            // After a short delay, redirect the user to the Facebook group
+            setTimeout(() => {
+                window.location.href = 'https://www.facebook.com/groups/1243951472977733';
+            }, 1000);
         }
     </script>
 </body>
