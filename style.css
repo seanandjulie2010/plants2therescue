@@ -12,6 +12,22 @@ body {
   background-color: #f7f5f0; /* light beige reminiscent of the logo background */
 }
 
+/* Decorative banner at the top of the page */
+.banner-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.banner {
+    width: 100%;
+    max-height: 200px;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
   color: #2f3e46; /* deep, muted green for headings */
