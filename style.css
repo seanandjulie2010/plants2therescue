@@ -306,3 +306,26 @@ footer a {
   color: #5c7a29;
   font-weight: 600;
 }
+
+/* Resource links list style */
+.resource-links {
+  list-style: disc inside;
+  max-width: 800px;
+  margin: 1rem auto;
+  padding-left: 1rem;
+  text-align: left;
+}
+
+.resource-links li {
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.resource-links a {
+  color: #5c7a29;
+  font-weight: 600;
+}
+
+.resource-links a:hover {
+  text-decoration: underline;
+}
