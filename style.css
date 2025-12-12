@@ -382,6 +382,18 @@ footer a {
   margin: 20px auto 0;
   border-radius: 12px;
 }
+.facebook-feed {
+  padding: 2rem 1rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.facebook-feed iframe {
+  max-width: 900px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
 
 .fb-note {
   margin: 10px 0 0;
