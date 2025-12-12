@@ -374,9 +374,29 @@ footer a {
   text-align: center;
 }
 
-.facebook-feed .container {
-  max-width: 520px;
-}
 .facebook-feed iframe {
-  max-width: 100%;
+  width: 100%;
+  max-width: 900px;
+  height: 750px;
+  display: block;
+  margin: 20px auto 0;
+  border-radius: 12px;
+}
+
+.fb-note {
+  margin: 10px 0 0;
+  opacity: 0.85;
+}
+
+.fb-cta {
+  margin-top: 18px;
+}
+
+/* If you already have a .btn, keep yours. If not, here’s a simple one: */
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
 }
