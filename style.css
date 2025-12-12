@@ -407,3 +407,10 @@ footer a {
   text-align: center;
   color: #ffffff !important;
 }
+.btn {
+  transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
