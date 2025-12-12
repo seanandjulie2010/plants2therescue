@@ -369,32 +369,6 @@ footer a {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
   background: #eafbe8;
 }
-.facebook-feed {
-  margin: 60px auto;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.facebook-feed iframe {
-  width: 100%;
-  max-width: 900px;
-  height: 750px;
-  display: block;
-  margin: 20px auto 0;
-  border-radius: 12px;
-}
-.facebook-feed {
-  padding: 2rem 1rem;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-.facebook-feed iframe {
-  max-width: 900px;
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-}
 
 .fb-note {
   margin: 10px 0 0;
