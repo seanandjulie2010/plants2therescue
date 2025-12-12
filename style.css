@@ -414,3 +414,24 @@ footer a {
 .btn:hover {
   transform: translateY(-2px);
 }
+.more-recipes {
+  text-align: center;
+  margin: 2.5rem 0;
+}
+
+.more-button {
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background-color: #2f3e46;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.more-button:hover {
+  background-color: #3f5c63;
+  transform: translateY(-2px);
+}
