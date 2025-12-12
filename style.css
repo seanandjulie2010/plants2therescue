@@ -401,3 +401,9 @@ footer a {
   text-decoration: none;
   transition: transform 0.2s ease;
 }
+.btn {
+  font-size: 1rem;
+  line-height: 1.2;
+  text-align: center;
+  color: #ffffff !important;
+}
