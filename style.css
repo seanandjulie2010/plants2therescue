@@ -369,3 +369,11 @@ footer a {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
   background: #eafbe8;
 }
+.facebook-feed {
+  margin: 60px auto;
+  text-align: center;
+}
+
+.facebook-feed .container {
+  max-width: 520px;
+}
