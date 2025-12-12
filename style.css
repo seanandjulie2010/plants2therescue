@@ -377,3 +377,6 @@ footer a {
 .facebook-feed .container {
   max-width: 520px;
 }
+.facebook-feed iframe {
+  max-width: 100%;
+}
