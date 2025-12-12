@@ -405,11 +405,18 @@ footer a {
   margin-top: 18px;
 }
 
-/* If you already have a .btn, keep yours. If not, here’s a simple one: */
 .btn {
   display: inline-block;
   padding: 12px 22px;
   text-decoration: none;
   border-radius: 10px;
   font-weight: 600;
+  background-color: #5c7a29;
+  color: #ffffff;
 }
+
+.btn:hover {
+  background-color: #4f6b23;
+  text-decoration: none;
+}
+
