@@ -448,3 +448,6 @@ footer a {
   display: block;
   margin: 1rem 0;
 }
+.about h2 {
+  text-align: center;
+}
