@@ -448,7 +448,12 @@ footer a {
   display: block;
   margin: 1rem 0;
 }
+/* Center all section headings */
+section h2 {
+  text-align: center;
+}
 
+/* Decorative divider under section headings */
 section h2::after {
   content: "";
   display: block;
@@ -457,3 +462,4 @@ section h2::after {
   background-color: #c9d8b6;
   margin: 0.75rem auto 0;
 }
+
