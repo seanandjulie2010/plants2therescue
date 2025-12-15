@@ -462,4 +462,9 @@ section h2::after {
   background-color: #c9d8b6;
   margin: 0.75rem auto 0;
 }
-
+.about h2 {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
