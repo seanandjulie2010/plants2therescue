@@ -598,3 +598,10 @@ section h2::after {
     color: black;
   }
 }
+.recipe-header h1 {
+  margin-top: 0;
+}
+
+.recipe-header h2 {
+  margin-top: 0.75rem;
+}
