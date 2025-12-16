@@ -536,3 +536,65 @@ section h2::after {
   border-radius: 999px;
   border: 1px solid rgba(0,0,0,0.15);
 }
+/* Print Button */
+.print-btn {
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.print-btn:hover {
+  background: rgba(0,0,0,0.05);
+}
+/* Print Styles */
+@media print {
+
+  /* Hide everything by default */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show only the recipe page */
+  .recipe-page,
+  .recipe-page * {
+    visibility: visible;
+  }
+
+  /* Remove buttons, links, shadows */
+  .print-btn,
+  .back-link {
+    display: none !important;
+  }
+
+  /* Layout cleanup */
+  .recipe-page {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .recipe-block {
+    box-shadow: none;
+    border: none;
+    padding: 0.5rem 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
