@@ -4,11 +4,8 @@
   <meta charset="UTF-8">
   <title>Rainbow Avocado Chickpea Power Bowl | Plants 2 the Rescue</title>
   <link rel="stylesheet" href="style.css">
-  <button class="print-btn" onclick="window.print()">
-  🖨️ Print Recipe
-</button>
-
 </head>
+
 <body>
 
   <header class="site-header">
@@ -19,67 +16,75 @@
     </div>
   </header>
 
-  <main class="container">
-    <section>
-     <img src="recipe1-bowl.jpg.png"
-     alt="Rainbow Avocado Chickpea Power Bowl"
-     style="max-width: 100%; border-radius: 12px; margin-bottom: 20px;">
+  <!-- IMPORTANT: recipe-page wrapper -->
+  <main class="recipe-page">
 
+    <header class="recipe-header">
       <h2>Rainbow Avocado Chickpea Power Bowl</h2>
-      <p><strong>Vegan • Oil-Free • Sugar-Free • Nut-Free</strong></p>
+      <p class="recipe-subtitle"><strong>Vegan • Oil-Free • Sugar-Free • Nut-Free</strong></p>
+
+      <!-- Print Button -->
+      <button class="print-btn" onclick="window.print()">
+        🖨️ Print Recipe
+      </button>
+    </header>
+
+    <section class="recipe-content">
+
+      <img src="recipe1-bowl.jpg.png"
+        alt="Rainbow Avocado Chickpea Power Bowl"
+        class="recipe-hero-img">
 
       <p>
         This bowl is all about color, crunch and creaminess—whole-food fats from avocado,
         protein-rich chickpeas, and lots of fresh vegetables. Perfect for lunch or a light dinner.
       </p>
 
-      <h3>Ingredients (1–2 servings)</h3>
-      <ul>
-        <li>1 cup cooked brown rice or quinoa</li>
-        <li>1 cup cooked chickpeas (rinsed and drained if canned, no added salt if possible)</li>
-        <li>1 small ripe avocado</li>
-        <li>1/2 cup shredded red cabbage</li>
-        <li>1/2 cup grated carrot</li>
-        <li>1/2 cup chopped cucumber</li>
-        <li>1/2 cup halved cherry tomatoes</li>
-        <li>2 tablespoons chopped fresh parsley or cilantro (optional)</li>
-        <li>Juice of 1 lime or lemon</li>
-        <li>1–2 tablespoons water (to thin the dressing)</li>
-        <li>1/2 teaspoon garlic powder</li>
-        <li>1/2 teaspoon smoked paprika (optional)</li>
-        <li>Salt-free seasoning blend or a pinch of salt if you use it</li>
-      </ul>
+      <div class="recipe-block">
+        <h3>Ingredients (1–2 servings)</h3>
+        <ul>
+          <li>1 cup cooked brown rice or quinoa</li>
+          <li>1 cup cooked chickpeas</li>
+          <li>1 small ripe avocado</li>
+          <li>½ cup shredded red cabbage</li>
+          <li>½ cup grated carrot</li>
+          <li>½ cup chopped cucumber</li>
+          <li>½ cup halved cherry tomatoes</li>
+          <li>2 Tbsp chopped parsley or cilantro (optional)</li>
+          <li>Juice of 1 lime or lemon</li>
+          <li>1–2 Tbsp water</li>
+          <li>½ tsp garlic powder</li>
+          <li>½ tsp smoked paprika (optional)</li>
+          <li>Salt-free seasoning blend</li>
+        </ul>
+      </div>
 
-      <h3>Instructions</h3>
-      <ol>
-        <li>
-          <strong>Prepare the base:</strong> Add the cooked brown rice or quinoa to the bottom of a bowl.
-        </li>
-        <li>
-          <strong>Add the veggies and chickpeas:</strong> Arrange the chickpeas, red cabbage, carrot,
-          cucumber and cherry tomatoes on top of the grain base.
-        </li>
-        <li>
-          <strong>Make the avocado dressing:</strong> In a small bowl, mash the avocado with a fork.
-          Stir in the lime or lemon juice, garlic powder, smoked paprika and 1–2 tablespoons of water
-          until you have a pourable, creamy dressing. Adjust seasonings to taste.
-        </li>
-        <li>
-          <strong>Assemble:</strong> Drizzle the avocado dressing over the bowl. Sprinkle with the
-          chopped herbs and salt-free seasoning blend.
-        </li>
-        <li>
-          <strong>Serve:</strong> Toss gently so everything gets coated and enjoy right away.
-        </li>
-      </ol>
+      <div class="recipe-block">
+        <h3>Instructions</h3>
+        <ol>
+          <li>Add cooked grain to the bowl.</li>
+          <li>Arrange chickpeas and vegetables on top.</li>
+          <li>Mash avocado with citrus juice, spices, and water.</li>
+          <li>Drizzle dressing over the bowl.</li>
+          <li>Toss gently and serve.</li>
+        </ol>
+      </div>
 
-      <h3>Tips</h3>
-      <ul>
-        <li>Use frozen, thawed veggies if fresh produce is limited—make it work with what you have.</li>
-        <li>For extra crunch, add shredded lettuce or finely chopped kale.</li>
-        <li>Make it a meal prep: keep dressing separate until serving so the veggies stay crisp.</li>
-      </ul>
+      <div class="recipe-block">
+        <h3>Tips</h3>
+        <ul>
+          <li>Frozen veggies work great in a pinch.</li>
+          <li>Add shredded greens for extra crunch.</li>
+          <li>Keep dressing separate for meal prep.</li>
+        </ul>
+      </div>
+
     </section>
+
+    <footer class="recipe-footer">
+      <a class="back-link" href="index.html#recipes">← Back to Recipes</a>
+    </footer>
+
   </main>
 
 </body>
