@@ -5,28 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lemon Cloud Cups | Plants 2 the Rescue</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Recipe Schema Markup (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Lemon Cloud Cups",
+    "description": "A bright, creamy vegan dessert made with oats and real lemon. Oil-free, sugar-free, nut-free, and whole-food.",
+    "image": ["lemon-cloud-cups.png"],
+    "author": { "@type": "Organization", "name": "Plants 2 the Rescue" },
+    "publisher": { "@type": "Organization", "name": "Plants 2 the Rescue" },
+    "recipeCategory": "Dessert",
+    "keywords": "vegan, oil-free, sugar-free, nut-free, lemon, whole-food",
+    "recipeYield": "2-3 servings",
+    "prepTime": "PT5M",
+    "cookTime": "PT10M",
+    "totalTime": "PT1H15M",
+    "recipeIngredient": [
+      "1 cup rolled oats",
+      "1½ cups water",
+      "Zest of 1 large lemon",
+      "¼ cup fresh lemon juice",
+      "1 ripe banana (very ripe = better sweetness)",
+      "½ tsp vanilla extract",
+      "Pinch of turmeric (optional, for color only)",
+      "Pinch of salt (optional but enhances lemon)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": "Simmer oats and water 8–10 minutes until very soft."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Blend cooked oats with banana, lemon juice, lemon zest, vanilla (and turmeric) until silky."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Pour into cups and refrigerate at least 1 hour (2 hours is best)."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Serve cold. Optional: top with lemon zest, berries, or lemon peel curls."
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
 
   <main class="recipe-page">
 
-  <header class="recipe-header">
-  <h1>Lemon Cloud Cups</h1>
-  <p class="recipe-subtitle">
-    Vegan • Oil-Free • Sugar-Free • Nut-Free • Whole-Food
-  </p>
+    <header class="recipe-header">
+      <h1>Lemon Cloud Cups</h1>
+      <p class="recipe-subtitle">
+        Vegan • Oil-Free • Sugar-Free • Nut-Free • Whole-Food
+      </p>
 
-  <!-- Print Button -->
-  <button class="print-btn" onclick="window.print()">
-    🖨️ Print Recipe
-  </button>
+      <!-- Print Button -->
+      <button class="print-btn" onclick="window.print()">
+        🖨️ Print Recipe
+      </button>
 
-  <!-- Back Button -->
-  <div style="margin-top: 1rem;">
-    <a class="back-link" href="recipes.html">← Back to Recipes</a>
-  </div>
-</header>
+      <!-- Back Button -->
+      <div style="margin-top: 1rem;">
+        <a class="back-link" href="recipes.html">← Back to Recipes</a>
+      </div>
+    </header>
 
     <section class="recipe-hero">
       <img src="lemon-cloud-cups.png"
@@ -82,7 +129,6 @@
       </div>
 
     </section>
-
 
   </main>
 
