@@ -16,13 +16,20 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* Gentle fade-out before redirect */
+    /* Base state */
     body {
       opacity: 1;
-      transition: opacity 900ms ease;
+      transform: scale(1) rotate(0deg);
+      transform-origin: center center;
+      transition:
+        opacity 900ms ease,
+        transform 1200ms cubic-bezier(0.4, 0, 0.2, 1);
     }
-    body.fade-out {
+
+    /* Swirl + fade out */
+    body.swirl-out {
       opacity: 0;
+      transform: scale(0.2) rotate(540deg);
     }
 
     .redirect-note {
@@ -52,12 +59,16 @@
       </p>
 
       <p class="redirect-note" aria-live="polite">
-        Redirecting to the homepage in <strong><span id="countdown">12</span></strong> seconds…
+        Redirecting to the homepage in
+        <strong><span id="countdown">12</span></strong> seconds…
       </p>
 
       <div class="thank-you-actions">
         <a href="index.html" class="btn primary">Back to Homepage</a>
-        <a href="https://www.facebook.com/groups/1243951472977733/" target="_blank" rel="noopener" class="btn secondary">
+        <a href="https://www.facebook.com/groups/1243951472977733/"
+           target="_blank"
+           rel="noopener"
+           class="btn secondary">
           Join the Facebook Group
         </a>
       </div>
@@ -81,16 +92,15 @@
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Countdown + fade-out + redirect
+    // Countdown + swirl + redirect
     (function () {
-      const REDIRECT_SECONDS = 12;   // change to 10-15 if you want
-      const FADE_MS = 900;           // keep in sync with CSS transition above
+      const REDIRECT_SECONDS = 12;
+      const SWIRL_MS = 1200;
       const targetUrl = "index.html";
 
       const countdownEl = document.getElementById("countdown");
       let remaining = REDIRECT_SECONDS;
 
-      // Initialize display
       if (countdownEl) countdownEl.textContent = remaining;
 
       const timer = setInterval(() => {
@@ -100,17 +110,16 @@
           countdownEl.textContent = remaining;
         }
 
-        // Start fade right before redirect
+        // Trigger swirl animation
         if (remaining === 1) {
-          document.body.classList.add("fade-out");
+          document.body.classList.add("swirl-out");
         }
 
         if (remaining <= 0) {
           clearInterval(timer);
-          // Give the fade time to finish, then redirect
           setTimeout(() => {
             window.location.href = targetUrl;
-          }, FADE_MS);
+          }, SWIRL_MS);
         }
       }, 1000);
     })();
