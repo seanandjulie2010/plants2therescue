@@ -9,13 +9,12 @@
   <meta name="description" content="Thank you for reaching out to Plants 2 the Rescue." />
   <meta name="theme-color" content="#2f3e46" />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="style.css" />
 
   <style>
+    /* Swirl + fade out (page) */
     body {
       opacity: 1;
       transform: scale(1) rotate(0deg);
@@ -24,24 +23,33 @@
         opacity 900ms ease,
         transform 1200ms cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     body.swirl-out {
       opacity: 0;
       transform: scale(0.2) rotate(540deg);
     }
 
-    .redirect-note {
-      margin-top: 1rem;
-      opacity: 0.85;
+    /* Countdown number animation */
+    #countdown {
+      display: inline-block;
+      transform: scale(1);
+      transition: transform 220ms ease;
     }
+    #countdown.tick {
+      transform: scale(0.88);
+    }
+    /* Sync countdown shrink with swirl */
+    body.swirl-out #countdown {
+      transform: scale(0.6);
+    }
+
+    .redirect-note { margin-top: 1rem; opacity: 0.85; }
   </style>
 </head>
 
 <body>
-
-  <!-- Whoosh sound (preloaded, not autoplaying) -->
+  <!-- Whoosh sound (put whoosh.mp3 in the same folder) -->
   <audio id="whooshSound" preload="auto">
-    <source src="whoosh.mp3" type="audio/mpeg">
+    <source src="whoosh.mp3" type="audio/mpeg" />
   </audio>
 
   <main class="thank-you">
@@ -62,8 +70,7 @@
       </p>
 
       <p class="redirect-note" aria-live="polite">
-        Redirecting to the homepage in
-        <strong><span id="countdown">12</span></strong> seconds…
+        Redirecting to the homepage in <strong><span id="countdown">6</span></strong> seconds…
       </p>
 
       <div class="thank-you-actions">
@@ -77,8 +84,7 @@
       </div>
 
       <noscript>
-        <p>
-          <strong>Note:</strong> JavaScript is disabled, so the automatic redirect won’t run.
+        <p><strong>Note:</strong> JavaScript is disabled, so the automatic redirect won’t run.
           Please click <a href="index.html">Back to Homepage</a>.
         </p>
       </noscript>
@@ -105,15 +111,27 @@
       let remaining = REDIRECT_SECONDS;
       if (countdownEl) countdownEl.textContent = remaining;
 
+      const tick = () => {
+        if (!countdownEl) return;
+        countdownEl.classList.remove("tick");
+        // reflow to restart transition
+        void countdownEl.offsetWidth;
+        countdownEl.classList.add("tick");
+      };
+
+      // initial “tick” feel
+      tick();
+
       const timer = setInterval(() => {
         remaining--;
 
         if (countdownEl && remaining >= 0) {
           countdownEl.textContent = remaining;
+          tick();
         }
 
+        // Start swirl at 1 second remaining
         if (remaining === 1) {
-          // Play whoosh + start swirl
           if (whoosh) {
             whoosh.currentTime = 0;
             whoosh.play().catch(() => {});
@@ -130,6 +148,5 @@
       }, 1000);
     })();
   </script>
-
 </body>
 </html>
