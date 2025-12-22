@@ -141,9 +141,11 @@
 
         if (remaining <= 0) {
           clearInterval(timer);
-          setTimeout(() => {
-            window.location.href = targetUrl;
-          }, SWIRL_MS);
+         setTimeout(() => {
+  sessionStorage.setItem("fromThankYou", "true");
+  window.location.href = targetUrl;
+}, SWIRL_MS);
+
         }
       }, 1000);
     })();
