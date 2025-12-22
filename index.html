@@ -21,7 +21,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Plants 2 the Rescue" />
 
-  <!-- Favicon (add a favicon.png in your folder, or change to favicon.ico) -->
+  <!-- Favicon -->
   <link rel="icon" href="favicon.png" />
 
   <!-- Google Fonts -->
@@ -29,6 +29,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Fade-in ONLY when returning from thank-you.html */
+    body.fade-in-from-thankyou {
+      opacity: 0;
+      animation: fadeInHome 600ms ease forwards;
+    }
+    @keyframes fadeInHome {
+      to { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body.fade-in-from-thankyou {
+        animation: none;
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -108,7 +125,6 @@
       <h2>Features</h2>
 
       <div class="features-grid">
-
         <div class="feature">
           <h3>Mind–Body Integration</h3>
           <p>Mindfulness and meditation to tune into hunger cues, process emotions, and break stress-eating patterns.</p>
@@ -132,7 +148,6 @@
           <p>Encouragement, accountability, and real-life support in a safe, judgment-free space.</p>
           <a class="text-link" href="https://www.facebook.com/groups/1243951472977733/" target="_blank" rel="noopener">Join the group →</a>
         </div>
-
       </div>
     </div>
   </section>
@@ -172,21 +187,18 @@
 
       <div class="recipe-grid">
         <a class="recipe-card" href="recipe1.html">
-          <!-- NOTE: rename your file to recipe1-bowl.png (or update this src to match your real filename) -->
           <img src="recipe1-bowl.jpg.png" alt="Rainbow Avocado Chickpea Power Bowl" loading="lazy" />
           <h3>Rainbow Avocado Chickpea Power Bowl</h3>
           <p>Colorful, satisfying and packed with fiber and protein.</p>
         </a>
 
         <a class="recipe-card" href="recipe2.html">
-          <!-- NOTE: rename your file to recipe2-bowl.png (or update this src to match your real filename) -->
           <img src="recipe2-bowl.jpg.png" alt="Hearty Lentil &amp; Mushroom Shepherd’s Pie" loading="lazy" />
           <h3>Hearty Lentil &amp; Mushroom Shepherd’s Pie</h3>
           <p>Comfort food made with wholesome, everyday ingredients.</p>
         </a>
 
         <a class="recipe-card" href="recipe3.html">
-          <!-- NOTE: rename your file to recipe3-bowl.png (or update this src to match your real filename) -->
           <img src="recipe3-bowl.jpg.png" alt="Baked Apple Cinnamon Oat Cups" loading="lazy" />
           <h3>Baked Apple Cinnamon Oat Cups</h3>
           <p>Perfect for breakfast or a grab-and-go snack.</p>
@@ -242,7 +254,6 @@
         <a href="mailto:headed2@protonmail.com">headed2@protonmail.com</a>.
       </p>
 
-      <!-- Contact form (FormSubmit) -->
       <form class="contact-form" action="https://formsubmit.co/seantomlinson33@gmail.com" method="POST">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required />
@@ -254,10 +265,11 @@
         <textarea id="message" name="message" rows="5" required></textarea>
 
         <input type="hidden" name="_subject" value="Plants 2 the Rescue contact form submission" />
-<input type="hidden" name="_next" value="https://seanandjulie2010.github.io/plants2therescue/thank-you.html" />
-<input type="hidden" name="_captcha" value="false" />
-<input type="hidden" name="_template" value="table" />
-<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name="_next" value="https://seanandjulie2010.github.io/plants2therescue/thank-you.html" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
         <button type="submit">Send Message</button>
       </form>
 
@@ -284,9 +296,17 @@
     </div>
   </footer>
 
-  <!-- Script to insert the current year into the footer -->
   <script>
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // One-time fade-in ONLY when arriving from thank-you.html
+    (function () {
+      if (sessionStorage.getItem("fromThankYou") === "true") {
+        document.body.classList.add("fade-in-from-thankyou");
+        sessionStorage.removeItem("fromThankYou");
+      }
+    })();
   </script>
 
 </body>
