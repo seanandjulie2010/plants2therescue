@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Thank You | Plants 2 the Rescue</title>
+  <meta name="description" content="Thank you for reaching out to Plants 2 the Rescue. We appreciate you taking the time to contact us." />
+  <meta name="theme-color" content="#2f3e46" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Gentle fade-out before redirect */
+    body {
+      opacity: 1;
+      transition: opacity 900ms ease;
+    }
+    body.fade-out {
+      opacity: 0;
+    }
+
+    .redirect-note {
+      margin-top: 1rem;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="thank-you">
+    <div class="container thank-you-content">
+      <img src="logo.png" alt="Plants 2 the Rescue logo" class="logo" />
+
+      <h1>Thank You</h1>
+
+      <p>
+        We appreciate you taking the time to contact us. We will try our best to
+        get back to each and every person that reaches out to us.
+      </p>
+
+      <p>
+        In the meantime, please return to the homepage and click
+        <strong>Join Our Facebook Group</strong> to start the process of your
+        healing journey.
+      </p>
+
+      <p class="redirect-note" aria-live="polite">
+        Redirecting to the homepage in <strong><span id="countdown">12</span></strong> seconds…
+      </p>
+
+      <div class="thank-you-actions">
+        <a href="index.html" class="btn primary">Back to Homepage</a>
+        <a href="https://www.facebook.com/groups/1243951472977733/" target="_blank" rel="noopener" class="btn secondary">
+          Join the Facebook Group
+        </a>
+      </div>
+
+      <noscript>
+        <p>
+          <strong>Note:</strong> JavaScript is disabled, so the automatic redirect won’t run.
+          Please click <a href="index.html">Back to Homepage</a>.
+        </p>
+      </noscript>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <p>&copy; <span id="year"></span> Plants&nbsp;2&nbsp;the&nbsp;Rescue. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Countdown + fade-out + redirect
+    (function () {
+      const REDIRECT_SECONDS = 12;   // change to 10-15 if you want
+      const FADE_MS = 900;           // keep in sync with CSS transition above
+      const targetUrl = "index.html";
+
+      const countdownEl = document.getElementById("countdown");
+      let remaining = REDIRECT_SECONDS;
+
+      // Initialize display
+      if (countdownEl) countdownEl.textContent = remaining;
+
+      const timer = setInterval(() => {
+        remaining -= 1;
+
+        if (countdownEl && remaining >= 0) {
+          countdownEl.textContent = remaining;
+        }
+
+        // Start fade right before redirect
+        if (remaining === 1) {
+          document.body.classList.add("fade-out");
+        }
+
+        if (remaining <= 0) {
+          clearInterval(timer);
+          // Give the fade time to finish, then redirect
+          setTimeout(() => {
+            window.location.href = targetUrl;
+          }, FADE_MS);
+        }
+      }, 1000);
+    })();
+  </script>
+
+</body>
+</html>
