@@ -43,6 +43,22 @@
     }
 
     .redirect-note { margin-top: 1rem; opacity: 0.85; }
+
+    /* Optional: respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      body {
+        transition: none;
+        transform: none;
+      }
+      body.swirl-out {
+        opacity: 0;
+        transform: none;
+      }
+      #countdown, #countdown.tick, body.swirl-out #countdown {
+        transition: none;
+        transform: none;
+      }
+    }
   </style>
 </head>
 
@@ -98,6 +114,7 @@
   </footer>
 
   <script>
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
     (function () {
@@ -114,12 +131,11 @@
       const tick = () => {
         if (!countdownEl) return;
         countdownEl.classList.remove("tick");
-        // reflow to restart transition
-        void countdownEl.offsetWidth;
+        void countdownEl.offsetWidth; // reflow to restart transition
         countdownEl.classList.add("tick");
       };
 
-      // initial “tick” feel
+      // initial tick
       tick();
 
       const timer = setInterval(() => {
@@ -141,11 +157,14 @@
 
         if (remaining <= 0) {
           clearInterval(timer);
-         setTimeout(() => {
-  sessionStorage.setItem("fromThankYou", "true");
-  window.location.href = targetUrl;
-}, SWIRL_MS);
 
+          // Set flag so homepage fades in ONLY after redirect from thank-you
+          sessionStorage.setItem("fromThankYou", "true");
+
+          // Redirect after swirl completes
+          setTimeout(() => {
+            window.location.href = targetUrl;
+          }, SWIRL_MS);
         }
       }, 1000);
     })();
