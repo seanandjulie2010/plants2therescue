@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Thank You | Plants 2 the Rescue</title>
-  <meta name="description" content="Thank you for reaching out to Plants 2 the Rescue. We appreciate you taking the time to contact us." />
+  <meta name="description" content="Thank you for reaching out to Plants 2 the Rescue." />
   <meta name="theme-color" content="#2f3e46" />
 
   <!-- Google Fonts -->
@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* Base state */
     body {
       opacity: 1;
       transform: scale(1) rotate(0deg);
@@ -26,7 +25,6 @@
         transform 1200ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Swirl + fade out */
     body.swirl-out {
       opacity: 0;
       transform: scale(0.2) rotate(540deg);
@@ -40,6 +38,11 @@
 </head>
 
 <body>
+
+  <!-- Whoosh sound (preloaded, not autoplaying) -->
+  <audio id="whooshSound" preload="auto">
+    <source src="whoosh.mp3" type="audio/mpeg">
+  </audio>
 
   <main class="thank-you">
     <div class="container thank-you-content">
@@ -89,29 +92,32 @@
   </footer>
 
   <script>
-    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Countdown + swirl + redirect
     (function () {
       const REDIRECT_SECONDS = 12;
       const SWIRL_MS = 1200;
       const targetUrl = "index.html";
 
       const countdownEl = document.getElementById("countdown");
-      let remaining = REDIRECT_SECONDS;
+      const whoosh = document.getElementById("whooshSound");
 
+      let remaining = REDIRECT_SECONDS;
       if (countdownEl) countdownEl.textContent = remaining;
 
       const timer = setInterval(() => {
-        remaining -= 1;
+        remaining--;
 
         if (countdownEl && remaining >= 0) {
           countdownEl.textContent = remaining;
         }
 
-        // Trigger swirl animation
         if (remaining === 1) {
+          // Play whoosh + start swirl
+          if (whoosh) {
+            whoosh.currentTime = 0;
+            whoosh.play().catch(() => {});
+          }
           document.body.classList.add("swirl-out");
         }
 
