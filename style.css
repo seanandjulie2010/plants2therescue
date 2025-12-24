@@ -1,3 +1,7 @@
+/* =========================
+   Plants 2 the Rescue - Consolidated style.css
+   ========================= */
+
 /* Base styles */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -5,63 +9,57 @@
   padding: 0;
 }
 
+:root{
+  --bg: #f7f5f0;
+  --panel: #ffffff;
+  --hero: #f3f0e8;
+
+  --heading: #2f3e46;
+  --text: #333;
+  --muted: #444;
+
+  --green: #5c7a29;
+  --green-hover: #4f6b23;
+
+  --leaf-border: #c9d8b6;
+  --line: #e2e2e2;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
-  color: #333;
-  background-color: #f7f5f0; /* light beige reminiscent of the logo background */
+  color: var(--text);
+  background-color: var(--bg);
 }
 
-/* Decorative banner at the top of the page */
-.banner-wrapper {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.banner {
-  width: 100%;
-  max-height: 200px;
+/* Global image safety (prevents HUGE images) */
+img {
+  max-width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
 }
 
+/* Typography */
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
-  color: #2f3e46; /* deep, muted green for headings */
+  color: var(--heading);
   margin-bottom: 0.5rem;
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin-top: 1rem;
-}
-
-h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
+h1 { font-size: 2.5rem; margin-top: 1rem; }
+h2 { font-size: 2rem; margin-bottom: 1rem; }
+h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
 
 p {
   margin-bottom: 1rem;
-  color: #444;
+  color: var(--muted);
 }
 
 a {
-  color: #5c7a29; /* earthy green for links */
+  color: var(--green);
   text-decoration: none;
 }
-
-a:hover {
-  text-decoration: underline;
-}
+a:hover { text-decoration: underline; }
 
 /* Containers */
 .container {
@@ -70,109 +68,25 @@ a:hover {
   margin: 0 auto;
 }
 
-/* Hero section */
-.hero {
-  background-color: #f3f0e8;
-  padding: 3rem 1rem;
-  text-align: center;
-  border-bottom: 4px solid #c9d8b6; /* subtle border inspired by leaves */
-}
-
-.hero .logo {
-  max-width: 200px;
-  width: 80%;
-  height: auto;
-  margin: 0 auto;
-  display: block;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
-}
-
-.tagline {
-  font-size: 1.2rem;
-  color: #5c7a29;
-  margin-top: 0.5rem;
-  font-style: italic;
-}
-
-/* About section */
-.about {
-  padding: 2rem 1rem;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-.about .container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Features section */
-.features {
-  padding: 2rem 1rem;
-  background-color: #f7f5f0;
-}
-
-/* Success story section */
-.success {
-  padding: 2rem 1rem;
-  background-color: #ffffff;
-  text-align: center;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-.success h2 {
-  margin-bottom: 1rem;
-}
-
-.success img {
+/* Decorative banner at the top of the page */
+.banner-wrapper {
   width: 100%;
-  max-width: 700px;
+  overflow: hidden;
+}
+
+.banner {
+  width: 100%;
+  max-height: 200px;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
+  object-fit: cover;
 }
 
-.success p {
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #444;
-}
-
-/* Join group section */
-.join-group {
-  padding: 2rem 1rem;
-  background-color: #f7f5f0;
-  text-align: center;
-}
-
-.join-group h2 {
-  margin-bottom: 1rem;
-  color: #2f3e46;
-}
-
-.join-group p {
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #444;
-}
-
-.join-group a {
-  color: #5c7a29;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.join-group a:hover {
-  text-decoration: underline;
-}
-
-/* Navigation menu styles */
+/* =========================
+   Navigation
+   ========================= */
 .site-nav {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e2e2e2;
+  background-color: var(--panel);
+  border-bottom: 1px solid var(--line);
 }
 
 .site-nav ul {
@@ -181,47 +95,117 @@ a:hover {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
-  margin: 0;
   padding: 1rem;
 }
 
 .site-nav a {
-  color: #5c7a29;
+  color: var(--green);
   font-weight: 600;
-  text-decoration: none;
 }
 
-.site-nav a:hover {
-  text-decoration: underline;
+/* =========================
+   Hero
+   ========================= */
+.hero {
+  background-color: var(--hero);
+  padding: 3rem 1rem;
+  text-align: center;
+  border-bottom: 4px solid var(--leaf-border);
 }
 
-/* Section styles for recipes, links and success stories */
+.hero .logo {
+  max-width: 200px;
+  width: 80%;
+  margin: 0 auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: var(--green);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* Home page helper classes (if used) */
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-cta {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-note {
+  margin-top: 1rem;
+  opacity: 0.85;
+}
+
+/* =========================
+   Sections
+   ========================= */
+.about,
+.success,
+.recipes,
+.links,
+.success-stories,
+.contact,
+.how {
+  padding: 2rem 1rem;
+  background-color: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+.features,
+.join-group {
+  padding: 2rem 1rem;
+  background-color: var(--bg);
+}
+
+.about .container {
+  max-width: 800px;
+}
+
+.success,
+.join-group,
 .recipes,
 .links,
 .success-stories {
-  padding: 2rem 1rem;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e2e2e2;
   text-align: center;
 }
 
-.recipes h2,
-.links h2,
-.success-stories h2 {
-  margin-bottom: 1rem;
-  color: #2f3e46;
-}
-
+.success p,
+.join-group p,
 .recipes p,
 .links p,
 .success-stories p {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  color: #444;
 }
 
-/* Features grid */
+/* Center all section headings + divider */
+section h2 {
+  text-align: center;
+}
+
+section h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-color: var(--leaf-border);
+  margin: 0.75rem auto 0;
+}
+
+/* =========================
+   Features grid
+   ========================= */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -229,7 +213,7 @@ a:hover {
 }
 
 .feature {
-  background-color: #ffffff;
+  background-color: var(--panel);
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -246,99 +230,11 @@ a:hover {
   height: 100%;
   color: inherit;
   text-decoration: none;
-  transition: transform 0.2s ease;
 }
 
-/* Contact section */
-.contact {
-  padding: 2rem 1rem;
-  background-color: #ffffff;
-}
-
-.contact-wrapper {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.contact-form label {
-  font-weight: 600;
-  color: #2f3e46;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 100%;
-  background-color: #f9f9f9;
-}
-
-.contact-form button {
-  padding: 0.75rem 1rem;
-  border: none;
-  background-color: #5c7a29;
-  color: #fff;
-  font-size: 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.contact-form button:hover {
-  background-color: #4f6b23;
-}
-
-/* Footer */
-footer {
-  background-color: #f3f0e8;
-  padding: 1.5rem 1rem;
-  border-top: 4px solid #c9d8b6;
-  text-align: center;
-}
-
-footer .footer-content p {
-  margin-bottom: 0.5rem;
-  color: #2f3e46;
-}
-
-footer a {
-  color: #5c7a29;
-  font-weight: 600;
-}
-
-/* Resource links list style */
-.resource-links {
-  list-style: disc inside;
-  max-width: 800px;
-  margin: 1rem auto;
-  padding-left: 1rem;
-  text-align: left;
-}
-
-.resource-links li {
-  margin-bottom: 0.5rem;
-  color: #444;
-}
-
-.resource-links a {
-  color: #5c7a29;
-  font-weight: 600;
-}
-
-.resource-links a:hover {
-  text-decoration: underline;
-}
-
-/* Recipe cards (recipes listing page) */
+/* =========================
+   Recipe cards (recipes listing page)
+   ========================= */
 .recipe-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -350,7 +246,6 @@ footer a {
   display: block;
   border-radius: 12px;
   background: #f5f5f5;
-  text-decoration: none;
   color: inherit;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
@@ -360,8 +255,7 @@ footer a {
 .recipe-card img {
   width: 100%;
   height: 180px;
-  object-fit: cover;
-  display: block;
+  object-fit: cover; /* keep the crop */
 }
 
 .recipe-card h3 {
@@ -380,43 +274,59 @@ footer a {
   background: #eafbe8;
 }
 
-/* Buttons */
-.btn {
+/* =========================
+   Buttons (ONE system)
+   ========================= */
+.btn,
+.more-button,
+.contact form button,
+.contact form input[type="submit"],
+.contact-form button {
   display: inline-block;
   padding: 12px 22px;
-  text-decoration: none;
   border-radius: 10px;
   font-weight: 600;
-  background-color: #5c7a29;
-  color: #ffffff !important;
   font-size: 1rem;
   line-height: 1.2;
   text-align: center;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
   transition: background-color 0.25s ease, transform 0.15s ease;
 }
 
+/* Main buttons (both primary and secondary match green) */
+.btn {
+  background-color: var(--green);
+  color: #ffffff !important;
+}
+
 .btn:hover {
-  background-color: #4f6b23;
+  background-color: var(--green-hover);
   text-decoration: none;
   transform: translateY(-2px);
 }
 
-/* More recipes button */
-.more-recipes {
-  text-align: center;
-  margin: 2.5rem 0;
+/* If your HTML uses .btn.primary/.btn.secondary, keep them identical */
+.btn.primary,
+.btn.secondary {
+  background-color: var(--green);
+  color: #ffffff !important;
+  border: none;
 }
 
+.btn.primary:hover,
+.btn.secondary:hover {
+  background-color: var(--green-hover);
+}
+
+/* More recipes button (kept as the darker heading color) */
 .more-button {
-  display: inline-block;
   padding: 14px 32px;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
   color: #fff;
-  background-color: #2f3e46;
+  background-color: var(--heading);
   border-radius: 30px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.15s ease;
 }
 
 .more-button:hover {
@@ -424,48 +334,109 @@ footer a {
   transform: translateY(-2px);
 }
 
-/* Misc */
-.fb-note {
-  margin: 10px 0 0;
-  opacity: 0.85;
-}
-
-.fb-cta {
-  margin-top: 18px;
-}
-
-/* Simple recipe container (some older pages use this) */
-.recipe-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1.5rem;
-}
-
-.recipe-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  display: block;
-  margin: 1rem 0;
-}
-
-/* Center all section headings */
-section h2 {
+.more-recipes {
   text-align: center;
+  margin: 2.5rem 0;
 }
 
-/* Decorative divider under section headings */
-section h2::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 2px;
-  background-color: #c9d8b6;
-  margin: 0.75rem auto 0;
+/* Misc */
+.fb-note { margin: 10px 0 0; opacity: 0.85; }
+.fb-cta { margin-top: 18px; }
+
+.text-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 600;
 }
 
 /* =========================
-   Recipe Page Layout (newer)
+   Success / story images (consistent sizing)
+   ========================= */
+.success img,
+.success-stories img,
+.success-story img,
+.links img,
+.about img {
+  width: 100%;
+  max-width: 900px;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   Resource links
+   ========================= */
+.resource-links {
+  list-style: disc inside;
+  max-width: 800px;
+  margin: 1rem auto;
+  padding-left: 1rem;
+  text-align: left;
+}
+
+.resource-links li {
+  margin-bottom: 0.5rem;
+}
+
+.resource-links a {
+  font-weight: 600;
+}
+
+/* =========================
+   Contact section (works for BOTH .contact-form or plain form)
+   ========================= */
+.contact-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-form,
+.contact form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.contact-form label,
+.contact form label {
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact form input,
+.contact form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+  background-color: #f9f9f9;
+}
+
+.contact-form button,
+.contact form button,
+.contact form input[type="submit"] {
+  background-color: var(--green);
+  color: #fff;
+}
+
+.contact-form button:hover,
+.contact form button:hover,
+.contact form input[type="submit"]:hover {
+  background-color: var(--green-hover);
+}
+
+/* Contact follow-up line spacing */
+.contact-follow { margin-top: 1rem; }
+
+/* =========================
+   Recipe pages (newer layout)
    ========================= */
 .recipe-page {
   max-width: 900px;
@@ -492,7 +463,7 @@ section h2::after {
 .recipe-block {
   background: #fff;
   border-radius: 16px;
-  padding: 1.25rem 1.25rem;
+  padding: 1.25rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 }
 
@@ -519,16 +490,33 @@ section h2::after {
   text-align: center;
 }
 
+/* Recipe hero image + seatbelt */
+.recipe-hero {
+  width: 100%;
+  max-width: 720px;
+  margin: 1.5rem auto 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.recipe-page img {
+  width: 100%;
+  max-width: 720px;
+  margin: 1.5rem auto;
+}
+
+/* Back link */
 .back-link {
   display: inline-block;
-  text-decoration: none;
   font-weight: 600;
   padding: 0.75rem 1rem;
   border-radius: 999px;
   border: 1px solid rgba(0,0,0,0.15);
+  color: var(--heading);
+  background: transparent;
 }
 
-/* Print Button */
+/* Print button */
 .print-btn {
   margin-top: 1rem;
   background: transparent;
@@ -538,60 +526,45 @@ section h2::after {
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .print-btn:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.recipe-header h1 { margin-top: 0; }
-.recipe-header h2 { margin-top: 0.75rem; }
+/* =========================
+   Footer
+   ========================= */
+footer {
+  background-color: var(--hero);
+  padding: 1.5rem 1rem;
+  border-top: 4px solid var(--leaf-border);
+  text-align: center;
+}
+
+footer .footer-content p {
+  margin-bottom: 0.5rem;
+  color: var(--heading);
+}
+
+footer a {
+  color: var(--green);
+  font-weight: 600;
+}
 
 /* =========================
-   IMPORTANT IMAGE FIXES
+   Print Styles
    ========================= */
-
-/* Your tart page uses class="recipe-hero" */
-.recipe-hero {
-  width: 100%;
-  max-width: 720px;
-  height: auto;
-  display: block;
-  margin: 1.5rem auto 2rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-/* Seatbelt: any image on recipe pages will never load huge */
-.recipe-page img {
-  width: 100%;
-  max-width: 720px;
-  height: auto;
-  display: block;
-  margin: 1.5rem auto;
-}
-
-/* Print Styles */
 @media print {
-  /* Hide everything by default */
-  body * {
-    visibility: hidden;
-  }
+  body * { visibility: hidden; }
 
-  /* Show only the recipe page */
   .recipe-page,
-  .recipe-page * {
-    visibility: visible;
-  }
+  .recipe-page * { visibility: visible; }
 
-  /* Remove buttons, links */
   .print-btn,
-  .back-link {
-    display: none !important;
-  }
+  .back-link { display: none !important; }
 
-  /* Layout cleanup */
   .recipe-page {
     position: absolute;
     left: 0;
@@ -607,173 +580,8 @@ section h2::after {
     padding: 0.5rem 0;
   }
 
-  img {
-    max-width: 100%;
-    height: auto;
-    box-shadow: none;
-  }
-
   a {
     text-decoration: none;
     color: black;
   }
-}
-/* =========================
-   HOTFIX: stop giant images + fix contact form
-   Paste at VERY BOTTOM of style.css
-   ========================= */
-
-/* 1) Global safety: images should never overflow their containers */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Keep your recipe card crops working */
-.recipe-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-/* 2) Constrain any success/story images (your big before/after one) */
-.success img,
-.success-stories img,
-.success-story img,
-.links img,
-.about img {
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-  display: block;
-  margin: 1.5rem auto;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-/* 3) FIX: Contact section forms even if you didn't use .contact-form */
-.contact form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.contact form label {
-  font-weight: 600;
-  color: #2f3e46;
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.contact form input,
-.contact form textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  background-color: #f9f9f9;
-}
-
-.contact form button,
-.contact form input[type="submit"] {
-  width: fit-content;
-  padding: 0.75rem 1.1rem;
-  border: none;
-  background-color: #5c7a29;
-  color: #fff;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.contact form button:hover,
-.contact form input[type="submit"]:hover {
-  background-color: #4f6b23;
-}
-/* =========================
-   HOME PAGE PATCH (index.html classes)
-   Paste at VERY BOTTOM
-   ========================= */
-
-.hero-content {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.hero-cta {
-  margin-top: 1.25rem;
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.hero-note {
-  margin-top: 1rem;
-  opacity: 0.85;
-}
-
-/* Button variants used in your HTML */
-.btn.primary {
-  background-color: #5c7a29;
-  color: #ffffff !important;
-}
-
-.btn.primary:hover {
-  background-color: #4f6b23;
-}
-
-.btn.secondary {
-  background-color: transparent;
-  color: #2f3e46 !important;
-  border: 1px solid rgba(0,0,0,0.18);
-}
-
-.btn.secondary:hover {
-  background-color: rgba(0,0,0,0.04);
-  text-decoration: none;
-}
-
-/* How it works section */
-.how {
-  padding: 2rem 1rem;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-.steps {
-  max-width: 800px;
-  margin: 1rem auto 0;
-  padding-left: 1.25rem;
-}
-
-.steps li {
-  margin: 0.75rem 0;
-}
-
-/* Feature links */
-.text-link {
-  display: inline-block;
-  margin-top: 0.5rem;
-  font-weight: 600;
-}
-
-/* Results figure formatting */
-.result-figure {
-  margin: 1.25rem auto 1rem;
-  text-align: center;
-}
-
-.result-figure figcaption {
-  margin-top: 0.75rem;
-  font-size: 0.95rem;
-  opacity: 0.8;
-}
-
-/* Contact follow-up line spacing */
-.contact-follow {
-  margin-top: 1rem;
 }
