@@ -219,13 +219,12 @@ section h2::after {
   opacity: 0.85;
 }
 
-/* 🔒 IMAGE SIZE LOCK — THIS FIXES THE HUGE IMAGE ISSUE */
 .recipe-page img {
   width: 100%;
   max-width: 720px;
   height: auto;
   display: block;
-  margin: 1.5rem auto;
+  margin: 1.5rem auto 2rem;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
