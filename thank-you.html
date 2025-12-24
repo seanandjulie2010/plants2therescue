@@ -8,9 +8,17 @@
   <title>Thank You | Plants 2 the Rescue</title>
   <meta name="description" content="Thank you for reaching out to Plants 2 the Rescue." />
   <meta name="theme-color" content="#2f3e46" />
+  <link rel="canonical" href="https://seanandjulie2010.github.io/plants2therescue/thank-you.html" />
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+
+  <!-- Google Fonts (improved preconnect) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
 
   <style>
@@ -37,7 +45,6 @@
     #countdown.tick {
       transform: scale(0.88);
     }
-    /* Sync countdown shrink with swirl */
     body.swirl-out #countdown {
       transform: scale(0.6);
     }
@@ -46,18 +53,9 @@
 
     /* Optional: respect reduced motion */
     @media (prefers-reduced-motion: reduce) {
-      body {
-        transition: none;
-        transform: none;
-      }
-      body.swirl-out {
-        opacity: 0;
-        transform: none;
-      }
-      #countdown, #countdown.tick, body.swirl-out #countdown {
-        transition: none;
-        transform: none;
-      }
+      body { transition: none; transform: none; }
+      body.swirl-out { opacity: 0; transform: none; }
+      #countdown, #countdown.tick, body.swirl-out #countdown { transition: none; transform: none; }
     }
   </style>
 </head>
@@ -91,10 +89,13 @@
 
       <div class="thank-you-actions">
         <a href="index.html" class="btn primary">Back to Homepage</a>
-        <a href="https://www.facebook.com/groups/1243951472977733/"
-           target="_blank"
-           rel="noopener"
-           class="btn secondary">
+        <a
+          href="https://www.facebook.com/groups/1243951472977733/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn secondary"
+          aria-label="Join the Facebook Group (opens in a new tab)"
+        >
           Join the Facebook Group
         </a>
       </div>
@@ -131,37 +132,34 @@
       const tick = () => {
         if (!countdownEl) return;
         countdownEl.classList.remove("tick");
-        void countdownEl.offsetWidth; // reflow to restart transition
+        void countdownEl.offsetWidth; // restart transition
         countdownEl.classList.add("tick");
       };
 
-      // initial tick
       tick();
 
       const timer = setInterval(() => {
         remaining--;
 
-        if (countdownEl && remaining >= 0) {
+        if (countdownEl && remaining >= 1) {
           countdownEl.textContent = remaining;
           tick();
         }
 
-        // Start swirl at 1 second remaining
+        // Start swirl at 1 second remaining, then redirect after swirl
         if (remaining === 1) {
           if (whoosh) {
             whoosh.currentTime = 0;
             whoosh.play().catch(() => {});
           }
-          document.body.classList.add("swirl-out");
-        }
 
-        if (remaining <= 0) {
-          clearInterval(timer);
+          document.body.classList.add("swirl-out");
 
           // Set flag so homepage fades in ONLY after redirect from thank-you
           sessionStorage.setItem("fromThankYou", "true");
 
-          // Redirect after swirl completes
+          clearInterval(timer);
+
           setTimeout(() => {
             window.location.href = targetUrl;
           }, SWIRL_MS);
