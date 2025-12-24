@@ -530,3 +530,67 @@ footer a {
 
   a { text-decoration: none; color: black; }
 }
+
+/* Smooth scroll for in-page links (optional) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Visible keyboard focus (accessibility) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(92, 122, 41, 0.45);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Contact form button: consistent behavior across browsers */
+.contact-form button {
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.contact-form button:hover {
+  transform: translateY(-1px);
+}
+
+/* THANK YOU page styling (matches your site) */
+.thank-you {
+  padding: 2.5rem 1rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+.thank-you-content {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.thank-you .logo {
+  max-width: 200px;
+  width: 80%;
+  margin: 0 auto 0.75rem;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.thank-you-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Small-screen hero spacing */
+@media (max-width: 420px) {
+  .hero {
+    padding: 2.25rem 1rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+  }
+}
