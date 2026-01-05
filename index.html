@@ -79,108 +79,6 @@
       left: 1rem;
       top: 1rem;
     }
-
-    /* Active nav highlight controlled by JS */
-    .site-nav a.is-active {
-      background: rgba(132,169,140,0.18);
-      text-decoration: none;
-    }
-
-    /* =========================
-       Catchy add-ons (small CSS)
-       ========================= */
-
-    /* Hero badges */
-    .hero-badges{
-      margin-top: 1rem;
-      display:flex;
-      gap:.5rem;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .badge{
-      padding:.45rem .8rem;
-      border-radius:999px;
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(47,62,70,0.10);
-      backdrop-filter: blur(8px);
-      font-weight: 800;
-      color: var(--heading);
-      box-shadow: 0 10px 18px rgba(0,0,0,0.06);
-    }
-
-    /* Nav brand layout */
-    .nav-inner{
-      width: 90%;
-      max-width: 1100px;
-      margin: 0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 1rem;
-    }
-    .nav-brand{
-      display:flex;
-      align-items:center;
-      gap:.5rem;
-      font-weight: 900;
-      color: var(--heading);
-      padding: .35rem .5rem;
-      border-radius: 14px;
-      transition: background 160ms ease;
-    }
-    .nav-brand:hover{
-      text-decoration:none;
-      background: rgba(132,169,140,0.12);
-    }
-    .nav-brand img{
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-    }
-
-    /* Wins strip */
-    .wins{
-      margin-top: 1.25rem;
-      display:grid;
-      gap: .75rem;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-    .win{
-      padding: 1rem;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(47,62,70,0.10);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.06);
-      font-weight: 800;
-      color: var(--heading);
-    }
-
-    /* Contact highlight pill */
-    .contact-highlight{
-      display:inline-block;
-      margin-top:.25rem;
-      padding:.35rem .75rem;
-      border-radius:999px;
-      background: rgba(132,169,140,0.18);
-      color: var(--heading);
-      font-weight: 900;
-    }
-
-    /* Optional: cursor glow (pairs with JS at bottom) */
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background: radial-gradient(260px 260px at var(--mx, 50%) var(--my, 30%),
-        rgba(255,209,102,0.18),
-        transparent 60%);
-      opacity: .9;
-    }
-
-    @media (max-width: 860px){
-      .nav-inner{ flex-direction: column; }
-    }
   </style>
 </head>
 
@@ -221,7 +119,7 @@
         </a>
       </div>
 
-      <!-- NEW: catchy badges -->
+      <!-- Catchy badges -->
       <div class="hero-badges" aria-label="Quick benefits">
         <span class="badge">Whole-Food Reset</span>
         <span class="badge">Craving Tools</span>
@@ -232,11 +130,11 @@
     </div>
   </header>
 
-  <!-- Navigation (NEW: brand + wrap) -->
+  <!-- Navigation (brand + wrap) -->
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="nav-inner">
       <a class="nav-brand" href="#top" aria-label="Back to top">
-        <img src="logo.png" alt="" width="34" height="34" />
+        <img src="logo.png" alt="Plants 2 the Rescue" width="34" height="34" />
         <span>Plants 2 the Rescue</span>
       </a>
 
@@ -338,7 +236,7 @@
           This journey is about more than weight; it’s healing patterns, building peace with food, and learning sustainable rhythms that support your whole life.
         </p>
 
-        <!-- NEW: wins strip -->
+        <!-- Wins strip -->
         <div class="wins" aria-label="Community wins">
           <div class="win">“I stopped obsessing over food, feel peaceful again.”</div>
           <div class="win">“Simple meals. Real consistency.”</div>
@@ -480,7 +378,7 @@
       }
     })();
 
-    // Scroll reveal (pairs with .reveal/.is-visible in your new style.css)
+    // Scroll reveal (pairs with .reveal/.is-visible in your style.css)
     (function () {
       const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (prefersReduced) return;
@@ -508,7 +406,9 @@
 
     // Highlight the nav item for the section you're viewing
     (function () {
-      const links = Array.from(document.querySelectorAll(".site-nav a")).filter(a => (a.getAttribute("href") || "").startsWith("#"));
+      const links = Array.from(document.querySelectorAll(".site-nav a"))
+        .filter(a => (a.getAttribute("href") || "").startsWith("#"));
+
       const map = links
         .map(a => ({ a, id: (a.getAttribute("href") || "").replace("#", "") }))
         .filter(x => x.id);
