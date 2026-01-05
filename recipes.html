@@ -1,15 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>All Recipes | Plants 2 the Rescue</title>
-  <link rel="stylesheet" href="style.css">
+  <meta
+    name="description"
+    content="Explore whole-food, plant-based recipes from Plants 2 the Rescue — vegan, oil-free, sugar-free options for healing and sustainable weight loss."
+  />
+  <meta name="theme-color" content="#2f3e46" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+
+  <!-- Google Fonts (match index) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Skip link (keyboard accessibility) */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 0;
+      background: #ffffff;
+      color: #2f3e46;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      z-index: 9999;
+    }
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+    }
+  </style>
 </head>
 
 <body>
 
-  <main class="recipe-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <main id="main" class="recipe-page">
 
     <header class="recipe-header">
       <h1>Plants 2 the Rescue</h1>
@@ -21,160 +62,229 @@
       </div>
     </header>
 
-    <section class="recipe-content">
+    <section class="recipe-content" aria-label="Recipe filters and recipe list">
 
       <!-- FILTER BAR -->
-      <div class="recipe-filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="main">Bowls &amp; Mains</button>
-        <button class="filter-btn" data-filter="breakfast">Breakfast</button>
-        <button class="filter-btn" data-filter="dessert">Desserts</button>
-        <button class="filter-btn" data-filter="snack">Snacks &amp; Energy</button>
-        <button class="filter-btn" data-filter="drink">Drinks</button>
-        <button class="filter-btn" data-filter="holiday">Holiday</button>
+      <div class="recipe-filters" role="tablist" aria-label="Filter recipes">
+        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" type="button" data-filter="main" aria-pressed="false">Bowls &amp; Mains</button>
+        <button class="filter-btn" type="button" data-filter="breakfast" aria-pressed="false">Breakfast</button>
+        <button class="filter-btn" type="button" data-filter="dessert" aria-pressed="false">Desserts</button>
+        <button class="filter-btn" type="button" data-filter="snack" aria-pressed="false">Snacks &amp; Energy</button>
+        <button class="filter-btn" type="button" data-filter="drink" aria-pressed="false">Drinks</button>
+        <button class="filter-btn" type="button" data-filter="holiday" aria-pressed="false">Holiday</button>
       </div>
 
-      <div class="recipe-grid">
+      <!-- Optional: shows count -->
+      <p id="recipe-count" style="text-align:center; margin-top: .25rem; opacity: .85;"></p>
+
+      <div class="recipe-grid" aria-live="polite">
 
         <a href="recipe1.html" class="recipe-card" data-category="main">
-          <img src="recipe1-bowl.jpg.png" alt="Rainbow Avocado Chickpea Power Bowl">
+          <img src="recipe1-bowl.jpg.png" alt="Rainbow Avocado Chickpea Power Bowl" loading="lazy" decoding="async">
           <h3>Rainbow Avocado Chickpea Power Bowl</h3>
           <p>Colorful, satisfying and packed with fiber and protein.</p>
         </a>
 
         <a href="recipe2.html" class="recipe-card" data-category="main">
-          <img src="recipe2-bowl.jpg.png" alt="Hearty Lentil &amp; Mushroom Shepherd’s Pie">
+          <img src="recipe2-bowl.jpg.png" alt="Hearty Lentil &amp; Mushroom Shepherd’s Pie" loading="lazy" decoding="async">
           <h3>Hearty Lentil &amp; Mushroom Shepherd’s Pie</h3>
           <p>Comfort food made with wholesome, everyday ingredients.</p>
         </a>
 
         <a href="recipe3.html" class="recipe-card" data-category="breakfast snack">
-          <img src="recipe3-bowl.jpg.png" alt="Baked Apple Cinnamon Oat Cups">
+          <img src="recipe3-bowl.jpg.png" alt="Baked Apple Cinnamon Oat Cups" loading="lazy" decoding="async">
           <h3>Baked Apple Cinnamon Oat Cups</h3>
           <p>Perfect for breakfast or a grab-and-go snack.</p>
         </a>
 
         <a href="cranberry.html" class="recipe-card" data-category="dessert holiday">
-          <img src="Cranberry.jpg" alt="Cranberry Covenant Cake">
+          <img src="Cranberry.jpg" alt="Cranberry Covenant Cake" loading="lazy" decoding="async">
           <h3>Cranberry Covenant Cake</h3>
           <p>A tart-sweet, whole-food vegan cake.</p>
         </a>
 
         <a href="lemon-cloud-cups.html" class="recipe-card" data-category="dessert">
-          <img src="lemon-cloud-cups.png" alt="Lemon Cloud Cups">
+          <img src="lemon-cloud-cups.png" alt="Lemon Cloud Cups" loading="lazy" decoding="async">
           <h3>Lemon Cloud Cups</h3>
           <p>Bright, creamy, and surprisingly rich, simple and refreshing.</p>
         </a>
-      
+
         <a href="recipe-potato-al-pastor.html" class="recipe-card" data-category="main">
-          <img src="potato-al-pastor.png" alt="Smoky Lime Potato Al Pastor Skillet">
+          <img src="potato-al-pastor.png" alt="Smoky Lime Potato Al Pastor Skillet" loading="lazy" decoding="async">
           <h3>Smoky Lime Potato Al Pastor Skillet</h3>
           <p>Smoky, citrusy, and caramelized—bold Mexican-inspired potatoes with zero oil.</p>
         </a>
-        
+
         <a href="recipe-persimmon-tahini-cake.html" class="recipe-card" data-category="dessert">
-          <img src="persimmon-tahini-cake.png" alt="Persimmon–Tahini Covenant Cake">
+          <img src="persimmon-tahini-cake.png" alt="Persimmon–Tahini Covenant Cake" loading="lazy" decoding="async">
           <h3>Persimmon–Tahini Covenant Cake</h3>
           <p>A Middle Eastern–inspired cake that’s vegan, oil-free, sugar-free, and naturally sweet.</p>
         </a>
-       
+
         <a href="recipe-persian-walnut-cookies.html" class="recipe-card" data-category="dessert snack">
-          <img src="Persian-Walnut-cookies.png" alt="Persian Walnut &amp; Cardamom Cookies">
+          <img src="Persian-Walnut-cookies.png" alt="Persian Walnut &amp; Cardamom Cookies" loading="lazy" decoding="async">
           <h3>Persian Walnut &amp; Cardamom Cookies</h3>
           <p>Soft, fragrant Persian-inspired cookies made with walnuts, cardamom, and natural sweetness.</p>
         </a>
-       
+
         <a href="recipe-indonesian-nutmeg-comfort-pudding.html" class="recipe-card" data-category="dessert">
-          <img src="Indonesian-Nutmeg-Comfort-Pudding.png" alt="Indonesian Nutmeg Comfort Pudding">
+          <img src="Indonesian-Nutmeg-Comfort-Pudding.png" alt="Indonesian Nutmeg Comfort Pudding" loading="lazy" decoding="async">
           <h3>Indonesian Nutmeg Comfort Pudding</h3>
           <p>Warm, cozy Indonesian-inspired pudding with nutmeg as the star.</p>
         </a>
 
         <a href="recipe-rustic-italian-chestnut-tart.html" class="recipe-card" data-category="dessert holiday">
-          <img src="Rustic-Italian-Chestnut-&-Vanilla-Tart.png" alt="Rustic Italian Chestnut &amp; Vanilla Tart">
+          <img src="Rustic-Italian-Chestnut-&-Vanilla-Tart.png" alt="Rustic Italian Chestnut &amp; Vanilla Tart" loading="lazy" decoding="async">
           <h3>Rustic Italian Chestnut &amp; Vanilla Tart</h3>
           <p>Earthy roasted chestnuts, soft vanilla warmth, subtle citrus, and a delicate rice-paper crust.</p>
         </a>
 
         <a href="recipe-vegan-eggnog-holiday-cake.html" class="recipe-card" data-category="dessert holiday">
-          <img src="Vegan-Eggnog-Holiday-Cake.png" alt="Vegan Eggnog Holiday Cake">
+          <img src="Vegan-Eggnog-Holiday-Cake.png" alt="Vegan Eggnog Holiday Cake" loading="lazy" decoding="async">
           <h3>Vegan Eggnog Holiday Cake</h3>
           <p>Moist, cozy, warmly spiced vegan eggnog cake for Christmas and winter gatherings.</p>
         </a>
 
         <a href="recipe-vegan-eggnog.html" class="recipe-card" data-category="drink holiday">
-          <img src="Vegan-Eggnog.png" alt="Sugar-Free Vegan Eggnog">
+          <img src="Vegan-Eggnog.png" alt="Sugar-Free Vegan Eggnog" loading="lazy" decoding="async">
           <h3>Sugar-Free Vegan Eggnog</h3>
           <p>Creamy, cozy, dairy-free nog sweetened naturally with dates.</p>
         </a>
-  
+
         <a href="Matcha-Green-Tea-Pudding.html" class="recipe-card" data-category="dessert">
-          <img src="Matcha-Pudding.png" alt="Vegan Matcha Green Tea Pudding">
+          <img src="Matcha-Pudding.png" alt="Vegan Matcha Green Tea Pudding" loading="lazy" decoding="async">
           <h3>Vegan Matcha Green Tea Pudding</h3>
           <p>Creamy, gently sweet matcha pudding that’s vegan, oil-free, and refined-sugar-free.</p>
         </a>
 
         <a href="recipe-chai-spiced-vegan-cupcakes.html" class="recipe-card" data-category="dessert">
-          <img src="Chai-Spiced-Cupcakes.png" alt="Chai-Spiced Vegan Cupcakes">
+          <img src="Chai-Spiced-Cupcakes.png" alt="Chai-Spiced Vegan Cupcakes" loading="lazy" decoding="async">
           <h3>Chai-Spiced Vegan Cupcakes</h3>
           <p>Vegan • Oil-Free • Sugar-Free — warm chai flavor with date-sweetened goodness.</p>
         </a>
 
         <a href="recipe-date-energy-bars.html" class="recipe-card" data-category="snack">
-          <img src="Date-Energy-Bars.png" alt="Date Energy Bars">
+          <img src="Date-Energy-Bars.png" alt="Date Energy Bars" loading="lazy" decoding="async">
           <h3>Date Energy Bars</h3>
-          <p>A simple whole-food energy bar powered by dates, oats, and nuts</p>
+          <p>A simple whole-food energy bar powered by dates, oats, and nuts.</p>
         </a>
 
         <a href="recipe-vegan-orange-spanish-rice.html" class="recipe-card" data-category="main">
-          <img src="Vegan-Orange-Spanish-Rice.png" alt="Vegan Orange Spanish Rice">
+          <img src="Vegan-Orange-Spanish-Rice.png" alt="Vegan Orange Spanish Rice" loading="lazy" decoding="async">
           <h3>Vegan Orange Spanish Rice</h3>
           <p>Spanish-style rice with Brazilian orange sunshine.</p>
         </a>
 
         <a href="recipe-grapefruit-cheesecake.html" class="recipe-card" data-category="dessert">
-        <img src="grapefruit-cheesecake.png" alt="Decadent Grapefruit Cheesecake">
-        <h3>Decadent Grapefruit Cheesecake</h3>
-        <p>Bright, creamy, and citrus-forward cheesecake with a classic cashew option and a nut-free alternative.</p>
-       </a>
-       
+          <img src="grapefruit-cheesecake.png" alt="Decadent Grapefruit Cheesecake" loading="lazy" decoding="async">
+          <h3>Decadent Grapefruit Cheesecake</h3>
+          <p>Bright, creamy, and citrus-forward cheesecake with a classic cashew option and a nut-free alternative.</p>
+        </a>
+
         <a href="recipe-mind-blowing-lemon-dream-pie.html" class="recipe-card" data-category="dessert">
-        <img src="lemon-pie.png" alt="Mind-Blowing Lemon Dream Pie">
-        <h3>Mind-Blowing Lemon Dream Pie</h3>
-        <p>Ultra-creamy cashew version + <strong>optional</strong> nut-free lemon silk version.</p>
+          <img src="lemon-pie.png" alt="Mind-Blowing Lemon Dream Pie" loading="lazy" decoding="async">
+          <h3>Mind-Blowing Lemon Dream Pie</h3>
+          <p>Ultra-creamy cashew version + <strong>optional</strong> nut-free lemon silk version.</p>
         </a>
 
       </div>
+
+      <!-- Empty state message -->
+      <p id="no-results" style="display:none; text-align:center; margin-top: 1rem; opacity: .85;">
+        No recipes match this filter yet.
+      </p>
 
     </section>
 
   </main>
 
-  <!-- SIMPLE FILTER SCRIPT -->
+  <!-- SIMPLE FILTER + POP REVEAL SCRIPT -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const cards = document.querySelectorAll('.recipe-grid .recipe-card');
+      const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+      const cards = Array.from(document.querySelectorAll('.recipe-grid .recipe-card'));
+      const countEl = document.getElementById('recipe-count');
+      const noResultsEl = document.getElementById('no-results');
 
+      // Add reveal class so your style.css animations work here too
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!prefersReduced) {
+        cards.forEach(c => c.classList.add('reveal'));
+      }
+
+      function setCount(visibleCount) {
+        if (!countEl) return;
+        const total = cards.length;
+        if (visibleCount === total) {
+          countEl.textContent = `Showing all ${total} recipes`;
+        } else {
+          countEl.textContent = `Showing ${visibleCount} of ${total} recipes`;
+        }
+      }
+
+      function applyFilter(filter) {
+        let visible = 0;
+
+        cards.forEach(card => {
+          const categories = (card.getAttribute('data-category') || '').split(/\s+/).filter(Boolean);
+          const show = (filter === 'all' || categories.includes(filter));
+
+          card.style.display = show ? '' : 'none';
+
+          if (show) visible += 1;
+
+          // reset reveal animation when switching filters (nice effect)
+          if (!prefersReduced) {
+            card.classList.remove('is-visible');
+          }
+        });
+
+        if (noResultsEl) {
+          noResultsEl.style.display = (visible === 0) ? '' : 'none';
+        }
+
+        setCount(visible);
+
+        // Re-run reveal observer for visible cards
+        if (!prefersReduced) {
+          const visibleCards = cards.filter(c => c.style.display !== 'none');
+
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12 }
+          );
+
+          visibleCards.forEach(el => io.observe(el));
+        }
+      }
+
+      // Click handlers
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-          const filter = button.getAttribute('data-filter');
+          const filter = button.getAttribute('data-filter') || 'all';
 
-          // Toggle active button state
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-
-          // Show/hide cards based on filter
-          cards.forEach(card => {
-            const categories = (card.getAttribute('data-category') || '').split(' ');
-            if (filter === 'all' || categories.includes(filter)) {
-              card.style.display = '';
-            } else {
-              card.style.display = 'none';
-            }
+          // active state + aria
+          filterButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-pressed', 'false');
           });
+          button.classList.add('active');
+          button.setAttribute('aria-pressed', 'true');
+
+          applyFilter(filter);
         });
       });
+
+      // Initial state
+      applyFilter('all');
     });
   </script>
 
