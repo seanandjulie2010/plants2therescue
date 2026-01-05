@@ -121,6 +121,18 @@ a:hover { text-decoration: underline; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 }
 
+/* Optional cursor glow layer (works with your JS setting --mx/--my) */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: radial-gradient(260px 260px at var(--mx, 50%) var(--my, 30%),
+    rgba(255,209,102,0.18),
+    transparent 60%);
+  opacity: .9;
+}
+
 .hero-content {
   position: relative;
   z-index: 1;
@@ -156,6 +168,26 @@ a:hover { text-decoration: underline; }
 .hero-note {
   margin-top: 1rem;
   opacity: 0.85;
+}
+
+/* NEW: Hero badges (for index.html) */
+.hero-badges{
+  margin-top: 1rem;
+  display:flex;
+  gap:.5rem;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.badge{
+  padding:.45rem .8rem;
+  border-radius:999px;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(47,62,70,0.10);
+  backdrop-filter: blur(8px);
+  font-weight: 800;
+  color: var(--heading);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.06);
 }
 
 /* =========================
@@ -227,13 +259,46 @@ a:hover { text-decoration: underline; }
   border-bottom: 1px solid rgba(47,62,70,0.10);
 }
 
+/* NEW: nav inner wrapper + brand (for index.html) */
+.nav-inner{
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+}
+
+.nav-brand{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  font-weight: 900;
+  color: var(--heading);
+  padding: .35rem .5rem;
+  border-radius: 14px;
+  transition: background 160ms ease;
+}
+
+.nav-brand:hover{
+  text-decoration:none;
+  background: rgba(132,169,140,0.12);
+}
+
+.nav-brand img{
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
 .site-nav ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  padding: 0.9rem 1rem;
+  padding: 0.25rem 0; /* changed from big padding so nav-inner controls overall height */
 }
 
 .site-nav a {
@@ -249,6 +314,11 @@ a:hover { text-decoration: underline; }
   text-decoration: none;
   background: rgba(132,169,140,0.18);
   transform: translateY(-1px);
+}
+
+/* Optional active state used by your JS */
+.site-nav a.is-active{
+  background: rgba(132,169,140,0.18);
 }
 
 /* =========================
@@ -358,6 +428,23 @@ section h2::after {
   margin-top: 0.75rem;
   font-size: 0.95rem;
   opacity: 0.8;
+}
+
+/* NEW: Wins strip (for index.html) */
+.wins{
+  margin-top: 1.25rem;
+  display:grid;
+  gap: .75rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.win{
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(47,62,70,0.10);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.06);
+  font-weight: 800;
+  color: var(--heading);
 }
 
 /* =========================
@@ -500,6 +587,17 @@ section h2::after {
   background: rgba(255,255,255,0.85);
   backdrop-filter: blur(8px);
   padding: 1.25rem;
+}
+
+/* NEW: Contact highlight pill (for index.html) */
+.contact-highlight{
+  display:inline-block;
+  margin-top:.25rem;
+  padding:.35rem .75rem;
+  border-radius:999px;
+  background: rgba(132,169,140,0.18);
+  color: var(--heading);
+  font-weight: 900;
 }
 
 .contact-form {
@@ -730,4 +828,9 @@ textarea:focus-visible {
   h1 {
     font-size: 2.1rem;
   }
+}
+
+/* Responsive nav stacking */
+@media (max-width: 860px){
+  .nav-inner{ flex-direction: column; }
 }
