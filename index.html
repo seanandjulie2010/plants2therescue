@@ -10,13 +10,19 @@
 
   <!-- Primary SEO -->
   <title>Plants 2 the Rescue | Whole-Food Plant-Based Healing</title>
-  <meta name="description" content="Plants 2 the Rescue is a whole-food, plant-based community for weight loss, healing, and mind-body transformation through simple vegan nutrition and supportive connection." />
+  <meta
+    name="description"
+    content="Plants 2 the Rescue is a whole-food, plant-based community for weight loss, healing, and mind-body transformation through simple vegan nutrition and supportive connection."
+  />
   <meta name="theme-color" content="#2f3e46" />
   <link rel="canonical" href="https://seanandjulie2010.github.io/plants2therescue/" />
 
   <!-- Open Graph / Social -->
   <meta property="og:title" content="Plants 2 the Rescue – Vegan holistic weight-loss program" />
-  <meta property="og:description" content="Transform your body and soul through a whole-food plant-based diet. Heal the root of overeating and join our supportive community." />
+  <meta
+    property="og:description"
+    content="Transform your body and soul through a whole-food plant-based diet. Heal the root of overeating and join our supportive community."
+  />
   <meta property="og:image" content="https://seanandjulie2010.github.io/plants2therescue/transformation.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -24,17 +30,20 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Plants 2 the Rescue" />
 
-  <!-- Twitter (optional but helps) -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Favicons (basic + better support) -->
+  <!-- Favicons -->
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="favicon.png" />
 
-  <!-- Google Fonts (improved preconnect) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
 
   <link rel="stylesheet" href="style.css" />
 
@@ -70,6 +79,12 @@
       left: 1rem;
       top: 1rem;
     }
+
+    /* Optional: active nav highlight controlled by JS */
+    .site-nav a.is-active {
+      background: rgba(132,169,140,0.18);
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -79,7 +94,12 @@
 
   <!-- Decorative banner -->
   <div class="banner-wrapper">
-    <img src="banner.jpg" alt="Decorative fruits and plants banner" class="banner" loading="lazy" />
+    <img
+      src="banner.jpg"
+      alt="Decorative fruits and plants banner"
+      class="banner"
+      loading="lazy"
+    />
   </div>
 
   <!-- Header / Hero -->
@@ -90,7 +110,10 @@
       <p class="tagline">Transform your body and soul with whole-food, plant-based living</p>
 
       <div class="hero-cta">
-        <a class="btn primary" href="#contact">Request Coaching Info</a>
+        <a class="btn primary" href="#contact">
+          Request Coaching Info <span aria-hidden="true">→</span>
+        </a>
+
         <a
           class="btn secondary"
           href="https://www.facebook.com/groups/1243951472977733/"
@@ -98,7 +121,7 @@
           rel="noopener noreferrer"
           aria-label="Join the Facebook Group (opens in a new tab)"
         >
-          Join the Facebook Group
+          Join the Facebook Group <span aria-hidden="true">↗</span>
         </a>
       </div>
 
@@ -163,25 +186,29 @@
           <div class="feature">
             <h3>Mind–Body Integration</h3>
             <p>Mindfulness and meditation to tune into hunger cues, process emotions, and break stress-eating patterns.</p>
-            <a class="text-link" href="https://www.youtube.com/@plants2therescue618" target="_blank" rel="noopener noreferrer">Watch on YouTube →</a>
+            <a class="text-link" href="https://www.youtube.com/@plants2therescue618" target="_blank" rel="noopener noreferrer">
+              Watch on YouTube <span aria-hidden="true">→</span>
+            </a>
           </div>
 
           <div class="feature">
             <h3>Whole-Food Vegan Nutrition</h3>
             <p>Simple fruits, vegetables, legumes and grains to support weight loss and healing from within.</p>
-            <a class="text-link" href="#recipes">Explore recipes →</a>
+            <a class="text-link" href="#recipes">Explore recipes <span aria-hidden="true">→</span></a>
           </div>
 
           <div class="feature">
             <h3>Trauma-Informed Coaching</h3>
             <p>Compassionate support to uncover the emotional roots of overeating and build healthier coping strategies.</p>
-            <a class="text-link" href="#contact">Ask about coaching →</a>
+            <a class="text-link" href="#contact">Ask about coaching <span aria-hidden="true">→</span></a>
           </div>
 
           <div class="feature">
             <h3>Supportive Community</h3>
             <p>Healing happens best together. Our Facebook group is where recipes, encouragement, and real-life support are shared daily.</p>
-            <a class="text-link" href="https://www.facebook.com/groups/1243951472977733/" target="_blank" rel="noopener noreferrer">Join the group →</a>
+            <a class="text-link" href="https://www.facebook.com/groups/1243951472977733/" target="_blank" rel="noopener noreferrer">
+              Join the group <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       </div>
@@ -332,6 +359,60 @@
         document.body.classList.add("fade-in-from-thankyou");
         sessionStorage.removeItem("fromThankYou");
       }
+    })();
+
+    // Scroll reveal (pairs with .reveal/.is-visible in your new style.css)
+    (function () {
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduced) return;
+
+      const targets = document.querySelectorAll(
+        "#mission .container, #how-it-works .container, #features .feature, #success .container, #recipes .recipe-card, #links .container, #contact .contact-wrapper"
+      );
+
+      targets.forEach(el => el.classList.add("reveal"));
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      targets.forEach(el => io.observe(el));
+    })();
+
+    // Optional: highlight the nav item for the section you're viewing
+    (function () {
+      const links = Array.from(document.querySelectorAll(".site-nav a"));
+      const map = links
+        .map(a => ({ a, id: (a.getAttribute("href") || "").replace("#", "") }))
+        .filter(x => x.id);
+
+      const sections = map
+        .map(x => document.getElementById(x.id))
+        .filter(Boolean);
+
+      if (!sections.length) return;
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            const id = entry.target.id;
+            links.forEach(a => a.classList.toggle("is-active", (a.getAttribute("href") === "#" + id)));
+          });
+        },
+        { rootMargin: "-30% 0px -60% 0px", threshold: 0.01 }
+      );
+
+      sections.forEach(sec => io.observe(sec));
     })();
   </script>
 
