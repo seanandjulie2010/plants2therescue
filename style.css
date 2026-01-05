@@ -1,5 +1,5 @@
 /* =========================
-   Plants 2 the Rescue - style.css (clean + consistent)
+   Plants 2 the Rescue - style.css (clean + consistent + POP)
    ========================= */
 
 /* Base styles */
@@ -23,6 +23,18 @@
 
   --leaf-border: #c9d8b6;
   --line: #e2e2e2;
+
+  /* POP accents */
+  --accent: #84a98c;
+  --accent-2: #ffd166;
+  --ink: #2f3e46;
+
+  --shadow: 0 14px 40px rgba(0,0,0,0.12);
+  --shadow-soft: 0 10px 22px rgba(0,0,0,0.10);
+}
+
+html{
+  scroll-behavior: smooth;
 }
 
 body {
@@ -30,6 +42,9 @@ body {
   line-height: 1.6;
   color: var(--text);
   background-color: var(--bg);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Global safety: images never overflow */
@@ -79,16 +94,36 @@ a:hover { text-decoration: underline; }
 }
 
 /* =========================
-   Hero
+   Hero (POP)
    ========================= */
 .hero {
-  background-color: var(--hero);
+  position: relative;
+  overflow: hidden;
   padding: 3rem 1rem;
   text-align: center;
   border-bottom: 4px solid var(--leaf-border);
+
+  /* layered background for "pop" */
+  background:
+    radial-gradient(1200px 500px at 20% 10%, rgba(132,169,140,0.35), transparent 60%),
+    radial-gradient(900px 500px at 80% 30%, rgba(255,209,102,0.28), transparent 65%),
+    linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.55));
+  background-color: var(--hero);
+}
+
+/* subtle grain overlay (premium feel) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 }
 
 .hero-content {
+  position: relative;
+  z-index: 1;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -97,7 +132,10 @@ a:hover { text-decoration: underline; }
   max-width: 200px;
   width: 80%;
   margin: 0 auto;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+
+  /* upgraded shadow */
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.20));
+  transform: translateZ(0);
 }
 
 .tagline {
@@ -121,49 +159,72 @@ a:hover { text-decoration: underline; }
 }
 
 /* =========================
-   Buttons (both green)
+   Buttons (POP)
    ========================= */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+
   padding: 12px 22px;
-  border-radius: 10px;
-  font-weight: 600;
+  border-radius: 16px;
+  font-weight: 700;
   font-size: 1rem;
   line-height: 1.2;
   text-align: center;
   cursor: pointer;
   border: none;
   text-decoration: none;
-  background-color: var(--green);
+
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.10);
+}
+
+/* Primary: bold gradient */
+.btn.primary {
+  background: linear-gradient(135deg, var(--green), var(--green-hover));
   color: #ffffff !important;
-  transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+/* Secondary: glassy but still on-brand */
+.btn.secondary {
+  background: rgba(255,255,255,0.70);
+  border: 1px solid rgba(47,62,70,0.12);
+  color: var(--ink) !important;
+  backdrop-filter: blur(10px);
 }
 
 .btn:hover {
-  background-color: var(--green-hover);
   text-decoration: none;
   transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
 }
 
-/* Keep primary/secondary identical (so they match) */
-.btn.primary,
-.btn.secondary {
-  background-color: var(--green);
-  color: #ffffff !important;
-  border: none;
+.btn:active {
+  transform: translateY(0px);
 }
 
-.btn.primary:hover,
+/* Keep primary/secondary consistent on small UIs */
+.btn.primary:hover {
+  background: linear-gradient(135deg, var(--green-hover), var(--green));
+}
+
 .btn.secondary:hover {
-  background-color: var(--green-hover);
+  border-color: rgba(92,122,41,0.35);
 }
 
 /* =========================
-   Navigation
+   Navigation (sticky glass)
    ========================= */
 .site-nav {
-  background-color: var(--panel);
-  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(47,62,70,0.10);
 }
 
 .site-nav ul {
@@ -171,13 +232,23 @@ a:hover { text-decoration: underline; }
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
 }
 
 .site-nav a {
   color: var(--green);
-  font-weight: 600;
+  font-weight: 700;
+
+  border-radius: 12px;
+  padding: .5rem .75rem;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.site-nav a:hover {
+  text-decoration: none;
+  background: rgba(132,169,140,0.18);
+  transform: translateY(-1px);
 }
 
 /* =========================
@@ -219,22 +290,27 @@ a:hover { text-decoration: underline; }
   margin-right: auto;
 }
 
-/* Headings centered + divider */
+/* Headings centered + POP underline */
 section h2 {
   text-align: center;
+  position: relative;
+  display: inline-block;
+  padding-bottom: .35rem;
 }
 
+/* Replace the plain divider with a richer underline */
 section h2::after {
   content: "";
   display: block;
-  width: 60px;
-  height: 2px;
-  background-color: var(--leaf-border);
+  width: 90px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(132,169,140,0.55), rgba(255,209,102,0.35));
   margin: 0.75rem auto 0;
 }
 
 /* =========================
-   Features grid
+   Features grid (POP cards)
    ========================= */
 .features-grid {
   display: grid;
@@ -245,20 +321,21 @@ section h2::after {
 .feature {
   background-color: var(--panel);
   padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-radius: 22px;
+  border: 1px solid rgba(47,62,70,0.10);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .feature:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow);
 }
 
 .text-link {
   display: inline-block;
   margin-top: 0.5rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* =========================
@@ -273,7 +350,7 @@ section h2::after {
   width: 100%;
   max-width: 900px;
   margin: 1.5rem auto;
-  border-radius: 12px;
+  border-radius: 18px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
@@ -300,7 +377,7 @@ section h2::after {
   border: 1px solid var(--line);
   background: #f5f5f5;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--heading);
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
@@ -318,7 +395,7 @@ section h2::after {
 }
 
 /* =========================
-   Recipe cards (home + recipes page)
+   Recipe cards (home + recipes page) (POP)
    ========================= */
 .recipe-grid {
   display: grid;
@@ -329,18 +406,21 @@ section h2::after {
 
 .recipe-card {
   display: block;
-  border-radius: 12px;
-  background: #f5f5f5;
+  border-radius: 18px;
+  background: #f7f7f7;
   color: inherit;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid rgba(47,62,70,0.10);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .recipe-card img {
   width: 100%;
   height: 180px;
-  object-fit: cover; /* keep the crop */
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 240ms ease;
 }
 
 .recipe-card h3 {
@@ -354,9 +434,13 @@ section h2::after {
 }
 
 .recipe-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-  background: #eafbe8;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  background: #eef7ea;
+}
+
+.recipe-card:hover img {
+  transform: scale(1.06);
 }
 
 /* More recipes button */
@@ -369,17 +453,19 @@ section h2::after {
   display: inline-block;
   padding: 14px 32px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 800;
   text-decoration: none;
   color: #fff;
-  background-color: var(--heading);
-  border-radius: 30px;
-  transition: background-color 0.3s ease, transform 0.15s ease;
+  background: linear-gradient(135deg, var(--heading), #3f5c63);
+  border-radius: 999px;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.10);
 }
 
 .more-button:hover {
-  background-color: #3f5c63;
+  text-decoration: none;
   transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
 }
 
 /* =========================
@@ -398,15 +484,22 @@ section h2::after {
 }
 
 .resource-links a {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* =========================
-   Contact form
+   Contact form (POP)
    ========================= */
 .contact-wrapper {
   max-width: 600px;
   margin: 0 auto;
+
+  border-radius: 22px;
+  border: 1px solid rgba(47,62,70,0.10);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  padding: 1.25rem;
 }
 
 .contact-form {
@@ -417,30 +510,36 @@ section h2::after {
 }
 
 .contact-form label {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--heading);
 }
 
 .contact-form input,
 .contact-form textarea {
   padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 12px;
   font-size: 1rem;
   width: 100%;
-  background-color: #f9f9f9;
+  background-color: rgba(249,249,249,0.9);
 }
 
 .contact-form button {
   width: fit-content;
   padding: 0.75rem 1.1rem;
-  border-radius: 8px;
-  background-color: var(--green);
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--green), var(--green-hover));
   color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.10);
 }
 
 .contact-form button:hover {
-  background-color: var(--green-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
 }
 
 .contact-follow { margin-top: 1rem; }
@@ -462,7 +561,7 @@ footer .footer-content p {
 
 footer a {
   color: var(--green);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* =========================
@@ -484,6 +583,7 @@ footer a {
   border-radius: 16px;
   padding: 1.25rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  border: 1px solid rgba(47,62,70,0.08);
 }
 
 .recipe-grid-2 { display: grid; gap: 1.25rem; }
@@ -520,7 +620,7 @@ footer a {
 
 .back-link {
   display: inline-block;
-  font-weight: 600;
+  font-weight: 700;
   padding: 0.75rem 1rem;
   border-radius: 999px;
   border: 1px solid rgba(0,0,0,0.15);
@@ -534,7 +634,7 @@ footer a {
   padding: 0.6rem 1.1rem;
   border-radius: 999px;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -565,11 +665,6 @@ footer a {
   a { text-decoration: none; color: black; }
 }
 
-/* Smooth scroll for in-page links (optional) */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Visible keyboard focus (accessibility) */
 a:focus-visible,
 button:focus-visible,
@@ -578,17 +673,6 @@ textarea:focus-visible {
   outline: 3px solid rgba(92, 122, 41, 0.45);
   outline-offset: 3px;
   border-radius: 8px;
-}
-
-/* Contact form button: consistent behavior across browsers */
-.contact-form button {
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.15s ease;
-}
-
-.contact-form button:hover {
-  transform: translateY(-1px);
 }
 
 /* THANK YOU page styling (matches your site) */
@@ -608,7 +692,7 @@ textarea:focus-visible {
   max-width: 200px;
   width: 80%;
   margin: 0 auto 0.75rem;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.20));
 }
 
 .thank-you-actions {
@@ -617,6 +701,25 @@ textarea:focus-visible {
   gap: 0.75rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Scroll reveal classes (used by the JS I gave you) */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 520ms ease, transform 520ms ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced-motion: respect user settings */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn, .site-nav a, .feature, .recipe-card, .recipe-card img, .reveal {
+    transition: none !important;
+  }
 }
 
 /* Small-screen hero spacing */
