@@ -230,7 +230,49 @@
 </main>
 
 <script>
-/* unchanged script */
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".filter-btn");
+  const cards = document.querySelectorAll(".recipe-card");
+  const count = document.getElementById("recipe-count");
+  const noResults = document.getElementById("no-results");
+
+  function updateCount(visibleCards) {
+    count.textContent = `${visibleCards} recipe${visibleCards !== 1 ? "s" : ""} shown`;
+    noResults.style.display = visibleCards === 0 ? "block" : "none";
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+
+      // Update button state
+      buttons.forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-pressed", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-pressed", "true");
+
+      let visible = 0;
+
+      cards.forEach(card => {
+        const categories = card.dataset.category.split(" ");
+
+        if (filter === "all" || categories.includes(filter)) {
+          card.style.display = "";
+          visible++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      updateCount(visible);
+    });
+  });
+
+  // Initial count
+  updateCount(cards.length);
+});
 </script>
 
 </body>
