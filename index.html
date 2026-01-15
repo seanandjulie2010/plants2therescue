@@ -18,12 +18,13 @@
   <link rel="canonical" href="https://seanandjulie2010.github.io/plants2therescue/" />
 
   <!-- Open Graph / Social -->
-  <meta property="og:title" content="Plants 2 the Rescue – Vegan holistic weight-loss program" />
+  <meta property="og:title" content="Plants 2 the Rescue | Whole-Food Plant-Based Healing" />
   <meta
     property="og:description"
     content="Transform your body and soul through a whole-food plant-based diet. Heal the root of overeating and join our supportive community."
   />
   <meta property="og:image" content="https://seanandjulie2010.github.io/plants2therescue/transformation.png" />
+  <meta property="og:image:alt" content="Before and after transformation through whole-food plant-based living" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://seanandjulie2010.github.io/plants2therescue/" />
@@ -32,12 +33,22 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Plants 2 the Rescue | Whole-Food Plant-Based Healing" />
+  <meta
+    name="twitter:description"
+    content="Transform your body and soul through a whole-food plant-based diet. Heal the root of overeating and join our supportive community."
+  />
+  <meta name="twitter:image" content="https://seanandjulie2010.github.io/plants2therescue/transformation.png" />
 
   <!-- Favicons -->
-  <link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
-<link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180" />
+
+  <!-- Preload above-the-fold images -->
+  <link rel="preload" as="image" href="logo.png" />
+  <link rel="preload" as="image" href="banner.jpg" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -50,6 +61,12 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
+    /* Smooth scrolling (respects reduced motion) */
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
     /* Fade-in ONLY when returning from thank-you.html */
     body.fade-in-from-thankyou {
       opacity: 0;
@@ -82,6 +99,21 @@
       top: 1rem;
     }
   </style>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Plants 2 the Rescue",
+    "url": "https://seanandjulie2010.github.io/plants2therescue/",
+    "logo": "https://seanandjulie2010.github.io/plants2therescue/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/groups/1243951472977733/",
+      "https://www.youtube.com/@plants2therescue618"
+    ]
+  }
+  </script>
 </head>
 
 <body id="top">
@@ -95,13 +127,16 @@
       alt="Decorative fruits and plants banner"
       class="banner"
       loading="lazy"
+      decoding="async"
+      width="1920"
+      height="420"
     />
   </div>
 
   <!-- Header / Hero -->
   <header class="hero">
     <div class="hero-content">
-      <img src="logo.png" alt="Plants 2 the Rescue logo" class="logo" width="200" height="200" />
+      <img src="logo.png" alt="Plants 2 the Rescue logo" class="logo" width="200" height="200" decoding="async" />
       <h1>Plants&nbsp;2&nbsp;the&nbsp;Rescue</h1>
       <p class="tagline">Transform your body and soul with whole-food, plant-based living</p>
 
@@ -136,7 +171,7 @@
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="nav-inner">
       <a class="nav-brand" href="#top" aria-label="Back to top">
-        <img src="logo.png" alt="Plants 2 the Rescue" width="34" height="34" />
+        <img src="logo.png" alt="Plants 2 the Rescue" width="34" height="34" decoding="async" />
         <span>Plants 2 the Rescue</span>
       </a>
 
@@ -230,7 +265,7 @@
         <h2>Real Results</h2>
 
         <figure class="result-figure">
-          <img src="transformation.png" alt="Before and after transformation through plant-based living" loading="lazy" />
+          <img src="transformation.png" alt="Before and after transformation through plant-based living" loading="lazy" decoding="async" />
           <figcaption>Results vary, but consistent whole-food habits can create lasting change.</figcaption>
         </figure>
 
@@ -255,19 +290,19 @@
 
         <div class="recipe-grid">
           <a class="recipe-card" href="recipe1.html">
-            <img src="recipe1-bowl.jpg.png" alt="Rainbow Avocado Chickpea Power Bowl" loading="lazy" />
+            <img src="recipe1-bowl.jpg.png" alt="Rainbow Avocado Chickpea Power Bowl" loading="lazy" decoding="async" />
             <h3>Rainbow Avocado Chickpea Power Bowl</h3>
             <p>Colorful, satisfying and packed with fiber and protein.</p>
           </a>
 
           <a class="recipe-card" href="recipe2.html">
-            <img src="recipe2-bowl.jpg.png" alt="Hearty Lentil &amp; Mushroom Shepherd’s Pie" loading="lazy" />
+            <img src="recipe2-bowl.jpg.png" alt="Hearty Lentil &amp; Mushroom Shepherd’s Pie" loading="lazy" decoding="async" />
             <h3>Hearty Lentil &amp; Mushroom Shepherd’s Pie</h3>
             <p>Comfort food made with wholesome, everyday ingredients.</p>
           </a>
 
           <a class="recipe-card" href="recipe3.html">
-            <img src="recipe3-bowl.jpg.png" alt="Baked Apple Cinnamon Oat Cups" loading="lazy" />
+            <img src="recipe3-bowl.jpg.png" alt="Baked Apple Cinnamon Oat Cups" loading="lazy" decoding="async" />
             <h3>Baked Apple Cinnamon Oat Cups</h3>
             <p>Perfect for breakfast or a grab-and-go snack.</p>
           </a>
@@ -314,7 +349,7 @@
     <section id="contact" class="contact">
       <div class="container contact-wrapper">
         <h2>Get in Touch</h2>
-        <p class="contact-highlight">Limited coaching slots • Friendly reply • No pressure</p>
+        <p class="contact-highlight">Limited coaching slots • Friendly reply • No pressure • Typical response within 1–2 days</p>
 
         <p>
           Have a question, want to get involved, or just say hello? Drop us a message.
@@ -331,8 +366,17 @@
           <label for="email">Email</label>
           <input type="email" id="email" name="email" autocomplete="email" required />
 
+          <label for="interest">I’m interested in</label>
+          <select id="interest" name="interest" required>
+            <option value="" selected disabled>Choose one</option>
+            <option>Coaching (availability + pricing)</option>
+            <option>Community support (Facebook group)</option>
+            <option>Recipe help / meal ideas</option>
+            <option>Other</option>
+          </select>
+
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
+          <textarea id="message" name="message" rows="5" autocomplete="off" required></textarea>
 
           <input type="hidden" name="_subject" value="Plants 2 the Rescue contact form submission" />
           <input type="hidden" name="_next" value="https://seanandjulie2010.github.io/plants2therescue/thank-you.html" />
@@ -342,6 +386,11 @@
 
           <button type="submit">Send Message</button>
         </form>
+
+        <p class="fine-print">
+          By sending this form, your message is delivered by a form service and emailed to us.
+          We don’t sell your info. You can also email us directly anytime.
+        </p>
 
         <p class="contact-follow">
           Prefer community support right away?
@@ -374,7 +423,11 @@
 
     // One-time fade-in ONLY when arriving from thank-you.html
     (function () {
-      if (sessionStorage.getItem("fromThankYou") === "true") {
+      const cameFromThankYou =
+        sessionStorage.getItem("fromThankYou") === "true" ||
+        (document.referrer && /thank-you\.html$/i.test(document.referrer));
+
+      if (cameFromThankYou) {
         document.body.classList.add("fade-in-from-thankyou");
         sessionStorage.removeItem("fromThankYou");
       }
@@ -406,7 +459,7 @@
       targets.forEach(el => io.observe(el));
     })();
 
-    // Highlight the nav item for the section you're viewing
+    // Highlight the nav item for the section you're viewing (+ aria-current)
     (function () {
       const links = Array.from(document.querySelectorAll(".site-nav a"))
         .filter(a => (a.getAttribute("href") || "").startsWith("#"));
@@ -427,7 +480,16 @@
             if (!entry.isIntersecting) return;
 
             const id = entry.target.id;
-            links.forEach(a => a.classList.toggle("is-active", (a.getAttribute("href") === "#" + id)));
+
+            links.forEach(a => {
+              const isCurrent = (a.getAttribute("href") === "#" + id);
+              a.classList.toggle("is-active", isCurrent);
+              if (isCurrent) {
+                a.setAttribute("aria-current", "page");
+              } else {
+                a.removeAttribute("aria-current");
+              }
+            });
           });
         },
         { rootMargin: "-30% 0px -60% 0px", threshold: 0.01 }
