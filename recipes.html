@@ -245,16 +245,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const noResults = document.getElementById("no-results");
 
   /* ===============================
+     TITLE NORMALIZATION FOR SORTING
+     =============================== */
+  function normalizeTitle(title) {
+    return title
+      .toLowerCase()
+      .replace(/^(the |vegan |sugar-free |sugar free |oil-free |oil free )+/i, "")
+      .trim();
+  }
+
+  /* ===============================
      GLOBAL A–Z SORT (ALL RECIPES)
      =============================== */
-
   cards.sort((a, b) => {
-    const titleA = a.querySelector("h3").textContent.trim().toLowerCase();
-    const titleB = b.querySelector("h3").textContent.trim().toLowerCase();
+    const titleA = normalizeTitle(a.querySelector("h3").textContent);
+    const titleB = normalizeTitle(b.querySelector("h3").textContent);
     return titleA.localeCompare(titleB);
   });
 
-  // Remove all cards first
+  // Remove all cards
   cards.forEach(card => card.remove());
 
   // Reinsert in sorted order
@@ -263,7 +272,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===============================
      FILTERING LOGIC
      =============================== */
-
   function updateCount(visibleCards) {
     count.textContent = `${visibleCards} recipe${visibleCards !== 1 ? "s" : ""} shown`;
     noResults.style.display = visibleCards === 0 ? "block" : "none";
@@ -297,7 +305,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Initial count
   updateCount(cards.length);
 });
 </script>
