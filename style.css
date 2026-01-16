@@ -1,6 +1,8 @@
 /* =========================
    Plants 2 the Rescue - style.css (clean + consistent + POP)
    Updated: tokens/rhythm + accessibility + stability polish
+   + footer centering fix
+   + site-wide cursor glow overlay (needs small JS to set --mx/--my on <body>)
    ========================= */
 
 /* Base styles */
@@ -66,6 +68,41 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  position: relative; /* for glow overlay stacking */
+}
+
+/* =========================
+   Site-wide cursor glow
+   (JS should set --mx/--my on <body> and add .has-mouse)
+   ========================= */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(420px 420px at var(--mx, 50vw) var(--my, 20vh),
+      rgba(132,169,140,0.18),
+      transparent 60%),
+    radial-gradient(520px 520px at calc(var(--mx, 50vw) + 120px) calc(var(--my, 20vh) + 80px),
+      rgba(255,209,102,0.14),
+      transparent 62%);
+
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+body.has-mouse::before{
+  opacity: 1;
+}
+
+/* Keep all page content above the glow overlay */
+body > *{
+  position: relative;
+  z-index: 1;
 }
 
 /* Subtle premium selection */
@@ -166,18 +203,7 @@ a:hover { text-decoration: underline; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 }
 
-/* Optional cursor glow layer (works with your JS setting --mx/--my) */
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background: radial-gradient(260px 260px at var(--mx, 50%) var(--my, 30%),
-    rgba(255,209,102,0.18),
-    transparent 60%);
-  opacity: .9;
-}
-
+/* Keep hero content above its overlays */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -768,6 +794,16 @@ footer a {
   font-weight: 700;
 }
 
+/* FIX: footer was getting constrained by the 70ch rule */
+footer p,
+footer li{
+  max-width: none;
+}
+footer .footer-content p{
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* =========================
    Recipe Page (if used elsewhere)
    ========================= */
@@ -924,9 +960,13 @@ textarea:focus-visible {
   .btn, .site-nav a, .feature, .recipe-card, .recipe-card img, .reveal {
     transition: none !important;
   }
+  body::before{
+    transition: none !important;
+    opacity: 0 !important;
+  }
 }
 
-/* Touch devices: reduce hover "jumpiness" */
+/* Touch devices: reduce hover "jumpiness" + disable glow */
 @media (hover: none){
   .btn:hover,
   .feature:hover,
@@ -934,6 +974,7 @@ textarea:focus-visible {
   .site-nav a:hover{
     transform: none;
   }
+  body::before{ display: none; }
 }
 
 /* Small-screen hero spacing */
