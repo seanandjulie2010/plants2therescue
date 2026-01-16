@@ -1,6 +1,6 @@
 /* =========================
    Plants 2 the Rescue - style.css (clean + consistent + POP)
-   FIXED: site-wide cursor glow now shows across ALL sections (including white panels)
+   FIXED: site-wide cursor glow reliably shows across ALL sections
    + keeps accessibility + layout polish
    ========================= */
 
@@ -38,13 +38,6 @@
   --container: 1100px;
   --container-pad: 90%;
 
-  --space-1: .5rem;
-  --space-2: .75rem;
-  --space-3: 1rem;
-  --space-4: 1.5rem;
-  --space-5: 2rem;
-  --space-6: 3rem;
-
   /* Consistent rounding */
   --r-sm: 12px;
   --r-md: 16px;
@@ -59,12 +52,11 @@ html{
   background: var(--bg);
 }
 
+/* IMPORTANT: put the global background on html, not body, so the glow can overlay cleanly */
 body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   color: var(--text);
-
-  /* IMPORTANT: let the glow be visible; put bg on html instead */
   background: transparent;
 
   -webkit-font-smoothing: antialiased;
@@ -74,14 +66,14 @@ body {
   --mx: 50vw;
   --my: 20vh;
 
-  /* stacking context for overlay */
   position: relative;
   isolation: isolate;
+  min-height: 100vh;
 }
 
 /* =========================
-   Site-wide cursor glow (FIXED)
-   Shows OVER panel sections, but UNDER all content.
+   Site-wide cursor glow (RELIABLE)
+   Overlay is ABOVE backgrounds but BELOW content.
    JS sets --mx/--my on <body> and adds .has-mouse
    ========================= */
 body::before{
@@ -90,7 +82,7 @@ body::before{
   inset: 0;
   pointer-events: none;
 
-  /* KEY FIX: overlay sits above backgrounds/panels */
+  /* sits above page backgrounds */
   z-index: 0;
 
   opacity: 0;
@@ -105,12 +97,13 @@ body::before{
       transparent 70%);
 }
 
+/* Show glow once JS says so */
 body.has-mouse::before{
   opacity: 1;
 }
 
-/* Keep all page content above the glow overlay */
-body > *{
+/* Ensure main page content always sits ABOVE the glow */
+header, nav, main, footer {
   position: relative;
   z-index: 1;
 }
@@ -163,7 +156,7 @@ a {
 }
 a:hover { text-decoration: underline; }
 
-/* Containers (reuse tokens) */
+/* Containers */
 .container {
   width: var(--container-pad);
   max-width: var(--container);
@@ -199,7 +192,7 @@ a:hover { text-decoration: underline; }
   background-color: var(--hero);
 }
 
-/* subtle grain overlay (premium feel) */
+/* subtle grain overlay */
 .hero::before {
   content: "";
   position: absolute;
@@ -209,7 +202,7 @@ a:hover { text-decoration: underline; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 }
 
-/* Keep hero content above its overlays */
+/* Keep hero content above overlays */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -266,7 +259,7 @@ a:hover { text-decoration: underline; }
 }
 
 /* =========================
-   Buttons (POP)
+   Buttons
    ========================= */
 .btn {
   display: inline-flex;
@@ -410,8 +403,8 @@ a:hover { text-decoration: underline; }
   background-color: var(--panel);
   border-bottom: 1px solid var(--line);
 
-  /* Optional: lets glow “kiss” through a bit (keeps cards readable) */
-  background-image: linear-gradient(0deg, rgba(255,255,255,0.92), rgba(255,255,255,0.92));
+  /* Let glow softly show through */
+  background-image: linear-gradient(0deg, rgba(255,255,255,0.88), rgba(255,255,255,0.88));
 }
 
 .features {
@@ -423,7 +416,7 @@ a:hover { text-decoration: underline; }
   padding: 2rem 1rem;
   background-color: var(--panel);
   border-bottom: 1px solid var(--line);
-  background-image: linear-gradient(0deg, rgba(255,255,255,0.92), rgba(255,255,255,0.92));
+  background-image: linear-gradient(0deg, rgba(255,255,255,0.88), rgba(255,255,255,0.88));
 }
 
 .success,
@@ -438,13 +431,13 @@ a:hover { text-decoration: underline; }
   margin-right: auto;
 }
 
-/* Readability: avoid overly long lines */
+/* Readability */
 p, li{ max-width: 70ch; }
 .recipe-card p,
 .feature p,
 .resource-links li{ max-width: none; }
 
-/* Headings centered + POP underline */
+/* Headings centered + underline */
 section h2 {
   text-align: center;
   position: relative;
@@ -461,9 +454,7 @@ section h2::after {
   margin: 0.75rem auto 0;
 }
 
-/* =========================
-   How It Works (steps)
-   ========================= */
+/* How It Works */
 .steps{
   margin-top: 1rem;
   padding-left: 1.2rem;
@@ -473,9 +464,7 @@ section h2::after {
 .steps li{ color: var(--muted); }
 .steps strong{ color: var(--heading); }
 
-/* =========================
-   Features grid (POP cards)
-   ========================= */
+/* Features grid */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -502,9 +491,7 @@ section h2::after {
   font-weight: 700;
 }
 
-/* =========================
-   Results figure
-   ========================= */
+/* Results figure */
 .result-figure {
   margin: 1.25rem auto 1rem;
   text-align: center;
@@ -541,9 +528,7 @@ section h2::after {
   color: var(--heading);
 }
 
-/* =========================
-   Recipe Filters
-   ========================= */
+/* Recipe Filters */
 .recipe-filters {
   display: flex;
   flex-wrap: wrap;
@@ -575,9 +560,7 @@ section h2::after {
   border-color: var(--green);
 }
 
-/* =========================
-   Recipe cards
-   ========================= */
+/* Recipe cards */
 .recipe-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -647,9 +630,7 @@ section h2::after {
   box-shadow: var(--shadow-soft);
 }
 
-/* =========================
-   Resources list
-   ========================= */
+/* Resources list */
 .resource-links {
   list-style: disc inside;
   max-width: 800px;
@@ -661,9 +642,7 @@ section h2::after {
 .resource-links li { margin-bottom: 0.5rem; }
 .resource-links a { font-weight: 700; }
 
-/* =========================
-   Contact form (POP)
-   ========================= */
+/* Contact form */
 .contact-wrapper {
   max-width: 600px;
   margin: 0 auto;
@@ -742,17 +721,11 @@ section h2::after {
   opacity: .85;
 }
 
-/* =========================
-   Footer
-   ========================= */
+/* Footer */
 footer {
   background-color: var(--hero);
   padding: 1.5rem 1rem;
   border-top: 4px solid var(--leaf-border);
-  text-align: center;
-}
-
-footer .footer-content{
   text-align: center;
 }
 
@@ -761,7 +734,7 @@ footer .footer-content p {
   color: var(--heading);
 }
 
-/* FIX: footer was getting constrained by the 70ch rule */
+/* footer not constrained by 70ch rule */
 footer p,
 footer li{
   max-width: none;
@@ -774,9 +747,7 @@ footer a {
   font-weight: 700;
 }
 
-/* =========================
-   Recipe Page (if used elsewhere)
-   ========================= */
+/* Recipe Page */
 .recipe-page {
   max-width: 900px;
   margin: 0 auto;
@@ -850,7 +821,7 @@ footer a {
 
 .print-btn:hover { background: rgba(0,0,0,0.05); }
 
-/* Print Styles (recipe pages) */
+/* Print Styles */
 @media print {
   body * { visibility: hidden; }
   .recipe-page, .recipe-page * { visibility: visible; }
@@ -889,6 +860,9 @@ textarea:focus-visible {
   padding: 2.5rem 1rem;
   background: var(--panel);
   border-bottom: 1px solid var(--line);
+
+  /* keep glow subtle here too */
+  background-image: linear-gradient(0deg, rgba(255,255,255,0.88), rgba(255,255,255,0.88));
 }
 
 .thank-you-content {
@@ -923,7 +897,7 @@ textarea:focus-visible {
   transform: translateY(0);
 }
 
-/* Reduced-motion: respect user settings */
+/* Reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .btn, .site-nav a, .feature, .recipe-card, .recipe-card img, .reveal {
