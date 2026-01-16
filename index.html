@@ -61,12 +61,6 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* Smooth scrolling (respects reduced motion) */
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-    }
-
     /* Fade-in ONLY when returning from thank-you.html */
     body.fade-in-from-thankyou {
       opacity: 0;
@@ -80,23 +74,6 @@
         animation: none;
         opacity: 1;
       }
-    }
-
-    /* Skip link (keyboard accessibility) */
-    .skip-link {
-      position: absolute;
-      left: -999px;
-      top: 0;
-      background: #ffffff;
-      color: #2f3e46;
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-      z-index: 9999;
-    }
-    .skip-link:focus {
-      left: 1rem;
-      top: 1rem;
     }
   </style>
 
@@ -118,6 +95,7 @@
 
 <body id="top">
 
+  <!-- Skip link (styled in style.css) -->
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Decorative banner -->
@@ -126,7 +104,8 @@
       src="banner.jpg"
       alt="Decorative fruits and plants banner"
       class="banner"
-      loading="lazy"
+      loading="eager"
+      fetchpriority="high"
       decoding="async"
       width="1920"
       height="420"
@@ -136,7 +115,15 @@
   <!-- Header / Hero -->
   <header class="hero">
     <div class="hero-content">
-      <img src="logo.png" alt="Plants 2 the Rescue logo" class="logo" width="200" height="200" decoding="async" />
+      <img
+        src="logo.png"
+        alt="Plants 2 the Rescue logo"
+        class="logo"
+        width="200"
+        height="200"
+        decoding="async"
+        fetchpriority="high"
+      />
       <h1>Plants&nbsp;2&nbsp;the&nbsp;Rescue</h1>
       <p class="tagline">Transform your body and soul with whole-food, plant-based living</p>
 
@@ -164,6 +151,12 @@
       </div>
 
       <p class="hero-note">Vegan • Whole-food focused • Compassionate, trauma-informed support</p>
+
+      <noscript>
+        <p class="hero-note">
+          Note: Some subtle animations and navigation highlights require JavaScript, but all content works without it.
+        </p>
+      </noscript>
     </div>
   </header>
 
