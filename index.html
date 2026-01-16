@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -58,7 +58,8 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="style.css" />
+  <!-- IMPORTANT: cache-bust for GitHub Pages -->
+  <link rel="stylesheet" href="style.css?v=20260116" />
 
   <style>
     /* Fade-in ONLY when returning from thank-you.html */
@@ -95,7 +96,7 @@
 
 <body id="top">
 
-  <!-- Skip link (styled in style.css) -->
+  <!-- Skip link -->
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Decorative banner -->
@@ -143,7 +144,6 @@
         </a>
       </div>
 
-      <!-- Catchy badges -->
       <div class="hero-badges" aria-label="Quick benefits">
         <span class="badge">Whole-Food Reset</span>
         <span class="badge">Craving Tools</span>
@@ -160,7 +160,7 @@
     </div>
   </header>
 
-  <!-- Navigation (brand + wrap) -->
+  <!-- Navigation -->
   <nav class="site-nav" aria-label="Primary navigation">
     <div class="nav-inner">
       <a class="nav-brand" href="#top" aria-label="Back to top">
@@ -258,7 +258,14 @@
         <h2>Real Results</h2>
 
         <figure class="result-figure">
-          <img src="transformation.png" alt="Before and after transformation through plant-based living" loading="lazy" decoding="async" />
+          <img
+            src="transformation.png"
+            alt="Before and after transformation through plant-based living"
+            loading="lazy"
+            decoding="async"
+            width="1200"
+            height="630"
+          />
           <figcaption>Results vary, but consistent whole-food habits can create lasting change.</figcaption>
         </figure>
 
@@ -375,7 +382,6 @@
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-
           <button type="submit">Send Message</button>
         </form>
 
@@ -409,122 +415,124 @@
     </div>
   </footer>
 
- <script>
-  // Run after DOM is ready (extra safe on GitHub Pages caching)
-  (function () {
-    const onReady = (fn) => {
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", fn, { once: true });
-      } else {
-        fn();
-      }
-    };
-
-    onReady(() => {
-      // Footer year
-      const yearEl = document.getElementById("year");
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-      // One-time fade-in ONLY when arriving from thank-you.html
-      (function () {
-        const cameFromThankYou =
-          sessionStorage.getItem("fromThankYou") === "true" ||
-          (document.referrer && /thank-you\.html$/i.test(document.referrer));
-
-        if (cameFromThankYou) {
-          document.body.classList.add("fade-in-from-thankyou");
-          sessionStorage.removeItem("fromThankYou");
+  <script>
+    // Run after DOM is ready (extra safe on GitHub Pages caching)
+    (function () {
+      const onReady = (fn) => {
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", fn, { once: true });
+        } else {
+          fn();
         }
-      })();
+      };
 
-      // Scroll reveal
-      (function () {
-        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (prefersReduced) return;
+      onReady(() => {
+        // Footer year
+        const yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-        const targets = document.querySelectorAll(
-          "#mission .container, #how-it-works .container, #features .feature, #success .container, #recipes .recipe-card, #links .container, #contact .contact-wrapper, .wins .win, .hero-badges .badge"
-        );
+        // One-time fade-in ONLY when arriving from thank-you.html
+        (function () {
+          const cameFromThankYou =
+            sessionStorage.getItem("fromThankYou") === "true" ||
+            (document.referrer && /thank-you\.html$/i.test(document.referrer));
 
-        targets.forEach((el) => el.classList.add("reveal"));
+          if (cameFromThankYou) {
+            document.body.classList.add("fade-in-from-thankyou");
+            sessionStorage.removeItem("fromThankYou");
+          }
+        })();
 
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                io.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.12 }
-        );
+        // Scroll reveal
+        (function () {
+          const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (prefersReduced) return;
 
-        targets.forEach((el) => io.observe(el));
-      })();
+          const targets = document.querySelectorAll(
+            "#mission .container, #how-it-works .container, #features .feature, #success .container, #recipes .recipe-card, #links .container, #contact .contact-wrapper, .wins .win, .hero-badges .badge"
+          );
 
-      // Highlight the nav item for the section you're viewing (+ aria-current)
-      (function () {
-        const links = Array.from(document.querySelectorAll(".site-nav a")).filter((a) =>
-          (a.getAttribute("href") || "").startsWith("#")
-        );
+          targets.forEach((el) => el.classList.add("reveal"));
 
-        const map = links
-          .map((a) => ({ a, id: (a.getAttribute("href") || "").replace("#", "") }))
-          .filter((x) => x.id);
-
-        const sections = map.map((x) => document.getElementById(x.id)).filter(Boolean);
-
-        if (!sections.length) return;
-
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-
-              const id = entry.target.id;
-
-              links.forEach((a) => {
-                const isCurrent = a.getAttribute("href") === "#" + id;
-                a.classList.toggle("is-active", isCurrent);
-                if (isCurrent) a.setAttribute("aria-current", "page");
-                else a.removeAttribute("aria-current");
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  io.unobserve(entry.target);
+                }
               });
-            });
-          },
-          { rootMargin: "-30% 0px -60% 0px", threshold: 0.01 }
-        );
+            },
+            { threshold: 0.12 }
+          );
 
-        sections.forEach((sec) => io.observe(sec));
-      })();
+          targets.forEach((el) => io.observe(el));
+        })();
 
-      // Site-wide cursor glow (NO nested script tags, no duplicate logic)
-      (function () {
-        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (prefersReduced) return;
+        // Highlight the nav item for the section you're viewing (+ aria-current)
+        (function () {
+          const links = Array.from(document.querySelectorAll(".site-nav a")).filter((a) =>
+            (a.getAttribute("href") || "").startsWith("#")
+          );
 
-        const root = document.body;
+          const map = links
+            .map((a) => ({ a, id: (a.getAttribute("href") || "").replace("#", "") }))
+            .filter((x) => x.id);
 
-        // Force visible once JS runs (so you can confirm it's working)
-        root.classList.add("has-mouse");
-        root.style.setProperty("--mx", "50vw");
-        root.style.setProperty("--my", "20vh");
+          const sections = map.map((x) => document.getElementById(x.id)).filter(Boolean);
 
-        const move = (e) => {
-          const x = e.clientX;
-          const y = e.clientY;
-          if (typeof x !== "number" || typeof y !== "number") return;
+          if (!sections.length) return;
 
-          root.style.setProperty("--mx", x + "px");
-          root.style.setProperty("--my", y + "px");
-        };
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
 
-        window.addEventListener("pointermove", move, { passive: true });
-        window.addEventListener("mousemove", move, { passive: true });
-      })();
-    });
-  })();
-</script>
+                const id = entry.target.id;
+
+                links.forEach((a) => {
+                  const isCurrent = a.getAttribute("href") === "#" + id;
+                  a.classList.toggle("is-active", isCurrent);
+                  if (isCurrent) a.setAttribute("aria-current", "page");
+                  else a.removeAttribute("aria-current");
+                });
+              });
+            },
+            { rootMargin: "-30% 0px -60% 0px", threshold: 0.01 }
+          );
+
+          sections.forEach((sec) => io.observe(sec));
+        })();
+
+        // Site-wide cursor glow (no nested script tags, no duplicate logic)
+        (function () {
+          const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          const isTouch = window.matchMedia("(hover: none)").matches;
+          if (prefersReduced || isTouch) return;
+
+          const root = document.body;
+
+          // Make glow visible as soon as JS runs
+          root.classList.add("has-mouse");
+
+          const move = (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            if (typeof x !== "number" || typeof y !== "number") return;
+
+            root.style.setProperty("--mx", x + "px");
+            root.style.setProperty("--my", y + "px");
+          };
+
+          window.addEventListener("pointermove", move, { passive: true });
+
+          // Set an initial position so it doesn't "pop" in
+          root.style.setProperty("--mx", "50vw");
+          root.style.setProperty("--my", "20vh");
+        })();
+      });
+    })();
+  </script>
 
 </body>
 </html>
