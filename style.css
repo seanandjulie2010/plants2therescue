@@ -421,9 +421,15 @@ a:hover { text-decoration: underline; }
   margin-right: auto;
 }
 
-/* Readability: avoid overly long lines */
+/* Readability: avoid overly long lines
+   NOTE: exclude grid card text so cards don't look "skinny" */
 p, li{
   max-width: 70ch;
+}
+.recipe-card p,
+.feature p,
+.resource-links li{
+  max-width: none;
 }
 
 /* Headings centered + POP underline */
@@ -443,6 +449,22 @@ section h2::after {
   border-radius: var(--r-pill);
   background: linear-gradient(90deg, rgba(132,169,140,0.55), rgba(255,209,102,0.35));
   margin: 0.75rem auto 0;
+}
+
+/* =========================
+   How It Works (steps)
+   ========================= */
+.steps{
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: .6rem;
+}
+.steps li{
+  color: var(--muted);
+}
+.steps strong{
+  color: var(--heading);
 }
 
 /* =========================
@@ -680,18 +702,21 @@ section h2::after {
 }
 
 .contact-form input,
-.contact-form textarea {
+.contact-form textarea,
+.contact-form select{
   padding: 0.75rem;
   border: 1px solid rgba(0,0,0,0.18);
   border-radius: 12px;
   font-size: 1rem;
   width: 100%;
   background-color: rgba(249,249,249,0.9);
+  color: var(--heading);
 }
 
-/* Stronger focus feel for inputs */
+/* Stronger focus feel for inputs/select/textarea */
 .contact-form input:focus-visible,
-.contact-form textarea:focus-visible{
+.contact-form textarea:focus-visible,
+.contact-form select:focus-visible{
   border-color: rgba(92, 122, 41, 0.55);
   box-shadow: 0 0 0 4px rgba(92, 122, 41, 0.12);
 }
@@ -715,6 +740,13 @@ section h2::after {
 }
 
 .contact-follow { margin-top: 1rem; }
+
+/* Fine print */
+.fine-print{
+  margin-top: .75rem;
+  font-size: .92rem;
+  opacity: .85;
+}
 
 /* =========================
    Footer
