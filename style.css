@@ -1,5 +1,6 @@
 /* =========================
    Plants 2 the Rescue - style.css (clean + consistent + POP)
+   Updated: tokens/rhythm + accessibility + stability polish
    ========================= */
 
 /* Base styles */
@@ -16,7 +17,7 @@
 
   --heading: #2f3e46;
   --text: #333;
-  --muted: #444;
+  --muted: #55616a; /* improved hierarchy (more muted than body text) */
 
   --green: #5c7a29;
   --green-hover: #4f6b23;
@@ -31,6 +32,26 @@
 
   --shadow: 0 14px 40px rgba(0,0,0,0.12);
   --shadow-soft: 0 10px 22px rgba(0,0,0,0.10);
+
+  /* Layout + rhythm */
+  --container: 1100px;
+  --container-pad: 90%;
+
+  --space-1: .5rem;
+  --space-2: .75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+
+  /* Consistent rounding */
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-pill: 999px;
+
+  /* UA hint */
+  color-scheme: light;
 }
 
 html{
@@ -47,6 +68,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Subtle premium selection */
+::selection{
+  background: rgba(132,169,140,0.28);
+}
+
+/* Skip link (accessibility) */
+.skip-link{
+  position: absolute;
+  left: -999px;
+  top: 12px;
+  padding: .6rem 1rem;
+  background: #fff;
+  border: 2px solid rgba(92,122,41,0.5);
+  border-radius: var(--r-pill);
+  z-index: 9999;
+}
+.skip-link:focus{
+  left: 12px;
+}
+
 /* Global safety: images never overflow */
 img {
   max-width: 100%;
@@ -59,6 +100,10 @@ h1, h2, h3 {
   font-family: 'Playfair Display', serif;
   color: var(--heading);
   margin-bottom: 0.5rem;
+
+  /* readability polish */
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
 h1 { font-size: 2.5rem; margin-top: 1rem; }
@@ -73,10 +118,10 @@ a {
 }
 a:hover { text-decoration: underline; }
 
-/* Containers */
+/* Containers (reuse tokens) */
 .container {
-  width: 90%;
-  max-width: 1100px;
+  width: var(--container-pad);
+  max-width: var(--container);
   margin: 0 auto;
 }
 
@@ -170,7 +215,7 @@ a:hover { text-decoration: underline; }
   opacity: 0.85;
 }
 
-/* NEW: Hero badges (for index.html) */
+/* Hero badges (for index.html) */
 .hero-badges{
   margin-top: 1rem;
   display:flex;
@@ -181,7 +226,7 @@ a:hover { text-decoration: underline; }
 
 .badge{
   padding:.45rem .8rem;
-  border-radius:999px;
+  border-radius: var(--r-pill);
   background: rgba(255,255,255,0.75);
   border: 1px solid rgba(47,62,70,0.10);
   backdrop-filter: blur(8px);
@@ -200,7 +245,7 @@ a:hover { text-decoration: underline; }
   gap: .5rem;
 
   padding: 12px 22px;
-  border-radius: 16px;
+  border-radius: var(--r-md);
   font-weight: 700;
   font-size: 1rem;
   line-height: 1.2;
@@ -246,6 +291,21 @@ a:hover { text-decoration: underline; }
   border-color: rgba(92,122,41,0.35);
 }
 
+/* Better keyboard focus for buttons */
+.btn:focus-visible{
+  outline: 3px solid rgba(255, 209, 102, 0.65);
+  outline-offset: 3px;
+}
+
+/* Disabled state */
+.btn[aria-disabled="true"],
+.btn:disabled{
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 /* =========================
    Navigation (sticky glass)
    ========================= */
@@ -254,15 +314,16 @@ a:hover { text-decoration: underline; }
   top: 0;
   z-index: 50;
 
-  background: rgba(255,255,255,0.75);
+  /* fallback is slightly stronger for browsers that ignore blur */
+  background: rgba(255,255,255,0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(47,62,70,0.10);
 }
 
-/* NEW: nav inner wrapper + brand (for index.html) */
+/* nav inner wrapper + brand (for index.html) */
 .nav-inner{
-  width: 90%;
-  max-width: 1100px;
+  width: var(--container-pad);
+  max-width: var(--container);
   margin: 0 auto;
   display:flex;
   align-items:center;
@@ -298,7 +359,7 @@ a:hover { text-decoration: underline; }
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  padding: 0.25rem 0; /* changed from big padding so nav-inner controls overall height */
+  padding: 0.25rem 0;
 }
 
 .site-nav a {
@@ -360,6 +421,11 @@ a:hover { text-decoration: underline; }
   margin-right: auto;
 }
 
+/* Readability: avoid overly long lines */
+p, li{
+  max-width: 70ch;
+}
+
 /* Headings centered + POP underline */
 section h2 {
   text-align: center;
@@ -374,7 +440,7 @@ section h2::after {
   display: block;
   width: 90px;
   height: 10px;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   background: linear-gradient(90deg, rgba(132,169,140,0.55), rgba(255,209,102,0.35));
   margin: 0.75rem auto 0;
 }
@@ -391,7 +457,7 @@ section h2::after {
 .feature {
   background-color: var(--panel);
   padding: 1.5rem;
-  border-radius: 22px;
+  border-radius: var(--r-lg);
   border: 1px solid rgba(47,62,70,0.10);
   box-shadow: 0 12px 26px rgba(0,0,0,0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -430,7 +496,7 @@ section h2::after {
   opacity: 0.8;
 }
 
-/* NEW: Wins strip (for index.html) */
+/* Wins strip (for index.html) */
 .wins{
   margin-top: 1.25rem;
   display:grid;
@@ -460,7 +526,7 @@ section h2::after {
 
 .filter-btn {
   padding: 0.4rem 0.9rem;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   border: 1px solid var(--line);
   background: #f5f5f5;
   font-size: 0.9rem;
@@ -502,9 +568,10 @@ section h2::after {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
+/* Reduce layout shift: reserve space with aspect ratio */
 .recipe-card img {
   width: 100%;
-  height: 180px;
+  aspect-ratio: 16 / 10;
   object-fit: cover;
   transform: scale(1.01);
   transition: transform 240ms ease;
@@ -544,7 +611,7 @@ section h2::after {
   text-decoration: none;
   color: #fff;
   background: linear-gradient(135deg, var(--heading), #3f5c63);
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
   box-shadow: 0 10px 18px rgba(0,0,0,0.10);
 }
@@ -581,7 +648,7 @@ section h2::after {
   max-width: 600px;
   margin: 0 auto;
 
-  border-radius: 22px;
+  border-radius: var(--r-lg);
   border: 1px solid rgba(47,62,70,0.10);
   box-shadow: 0 12px 26px rgba(0,0,0,0.08);
   background: rgba(255,255,255,0.85);
@@ -589,12 +656,12 @@ section h2::after {
   padding: 1.25rem;
 }
 
-/* NEW: Contact highlight pill (for index.html) */
+/* Contact highlight pill (for index.html) */
 .contact-highlight{
   display:inline-block;
   margin-top:.25rem;
   padding:.35rem .75rem;
-  border-radius:999px;
+  border-radius: var(--r-pill);
   background: rgba(132,169,140,0.18);
   color: var(--heading);
   font-weight: 900;
@@ -620,6 +687,13 @@ section h2::after {
   font-size: 1rem;
   width: 100%;
   background-color: rgba(249,249,249,0.9);
+}
+
+/* Stronger focus feel for inputs */
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible{
+  border-color: rgba(92, 122, 41, 0.55);
+  box-shadow: 0 0 0 4px rgba(92, 122, 41, 0.12);
 }
 
 .contact-form button {
@@ -678,7 +752,7 @@ footer a {
 
 .recipe-block {
   background: #fff;
-  border-radius: 16px;
+  border-radius: var(--r-md);
   padding: 1.25rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.06);
   border: 1px solid rgba(47,62,70,0.08);
@@ -705,7 +779,7 @@ footer a {
   width: 100%;
   max-width: 720px;
   margin: 1.5rem auto 2rem;
-  border-radius: 16px;
+  border-radius: var(--r-md);
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
@@ -720,7 +794,7 @@ footer a {
   display: inline-block;
   font-weight: 700;
   padding: 0.75rem 1rem;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   border: 1px solid rgba(0,0,0,0.15);
   color: var(--heading);
 }
@@ -730,7 +804,7 @@ footer a {
   background: transparent;
   border: 1px solid rgba(0,0,0,0.2);
   padding: 0.6rem 1.1rem;
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
@@ -817,6 +891,16 @@ textarea:focus-visible {
   html { scroll-behavior: auto; }
   .btn, .site-nav a, .feature, .recipe-card, .recipe-card img, .reveal {
     transition: none !important;
+  }
+}
+
+/* Touch devices: reduce hover "jumpiness" */
+@media (hover: none){
+  .btn:hover,
+  .feature:hover,
+  .recipe-card:hover,
+  .site-nav a:hover{
+    transform: none;
   }
 }
 
