@@ -1,8 +1,7 @@
 /* =========================
    Plants 2 the Rescue - style.css (clean + consistent + POP)
-   Updated: tokens/rhythm + accessibility + stability polish
-   + footer centering fix
-   + site-wide cursor glow overlay (needs small JS to set --mx/--my on <body>)
+   FIXED: site-wide cursor glow now shows across ALL sections (including white panels)
+   + keeps accessibility + layout polish
    ========================= */
 
 /* Base styles */
@@ -57,13 +56,16 @@
 
 html{
   scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   color: var(--text);
-  background-color: var(--bg);
+
+  /* IMPORTANT: let the glow be visible; put bg on html instead */
+  background: transparent;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -72,36 +74,45 @@ body {
   --mx: 50vw;
   --my: 20vh;
 
-  /* create a clean stacking context */
+  /* stacking context for overlay */
   position: relative;
   isolation: isolate;
 }
 
 /* =========================
-   Site-wide cursor glow
-   (JS should set --mx/--my on <body> and add .has-mouse)
+   Site-wide cursor glow (FIXED)
+   Shows OVER panel sections, but UNDER all content.
+   JS sets --mx/--my on <body> and adds .has-mouse
    ========================= */
 body::before{
   content:"";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: -1;              /* safely behind all content */
-  opacity: 0;               /* off until mouse moves */
+
+  /* KEY FIX: overlay sits above backgrounds/panels */
+  z-index: 0;
+
+  opacity: 0;
   transition: opacity 220ms ease;
 
-  /* NO calc() with custom properties (can fail in some browsers) */
   background:
-    radial-gradient(420px 420px at var(--mx) var(--my),
+    radial-gradient(420px 420px at var(--mx, 50vw) var(--my, 20vh),
       rgba(132,169,140,0.18),
       transparent 60%),
-    radial-gradient(560px 560px at var(--mx) var(--my),
+    radial-gradient(560px 560px at var(--mx, 50vw) var(--my, 20vh),
       rgba(255,209,102,0.14),
       transparent 70%);
 }
 
 body.has-mouse::before{
   opacity: 1;
+}
+
+/* Keep all page content above the glow overlay */
+body > *{
+  position: relative;
+  z-index: 1;
 }
 
 /* Subtle premium selection */
@@ -234,7 +245,7 @@ a:hover { text-decoration: underline; }
   opacity: 0.85;
 }
 
-/* Hero badges (for index.html) */
+/* Hero badges */
 .hero-badges{
   margin-top: 1rem;
   display:flex;
@@ -398,6 +409,9 @@ a:hover { text-decoration: underline; }
   padding: 2rem 1rem;
   background-color: var(--panel);
   border-bottom: 1px solid var(--line);
+
+  /* Optional: lets glow “kiss” through a bit (keeps cards readable) */
+  background-image: linear-gradient(0deg, rgba(255,255,255,0.92), rgba(255,255,255,0.92));
 }
 
 .features {
@@ -409,6 +423,7 @@ a:hover { text-decoration: underline; }
   padding: 2rem 1rem;
   background-color: var(--panel);
   border-bottom: 1px solid var(--line);
+  background-image: linear-gradient(0deg, rgba(255,255,255,0.92), rgba(255,255,255,0.92));
 }
 
 .success,
@@ -423,8 +438,7 @@ a:hover { text-decoration: underline; }
   margin-right: auto;
 }
 
-/* Readability: avoid overly long lines
-   NOTE: exclude grid card text so cards don't look "skinny" */
+/* Readability: avoid overly long lines */
 p, li{ max-width: 70ch; }
 .recipe-card p,
 .feature p,
