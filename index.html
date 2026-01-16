@@ -491,19 +491,19 @@
       sections.forEach(sec => io.observe(sec));
     })();
 
-    // Optional: cursor glow on hero (adds subtle "wow")
+    // Site-wide cursor glow (works with the CSS body::before glow layer)
     (function () {
-      const hero = document.querySelector(".hero");
-      if (!hero) return;
-
       const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (prefersReduced) return;
+      const isTouch = window.matchMedia("(hover: none)").matches;
+      if (prefersReduced || isTouch) return;
 
-      hero.addEventListener("mousemove", (e) => {
-        const r = hero.getBoundingClientRect();
-        hero.style.setProperty("--mx", `${e.clientX - r.left}px`);
-        hero.style.setProperty("--my", `${e.clientY - r.top}px`);
-      });
+      const root = document.body;
+
+      window.addEventListener("mousemove", (e) => {
+        root.classList.add("has-mouse");
+        root.style.setProperty("--mx", e.clientX + "px");
+        root.style.setProperty("--my", e.clientY + "px");
+      }, { passive: true });
     })();
   </script>
 
