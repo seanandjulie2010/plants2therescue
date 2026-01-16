@@ -19,7 +19,7 @@
 
   --heading: #2f3e46;
   --text: #333;
-  --muted: #55616a; /* improved hierarchy (more muted than body text) */
+  --muted: #55616a;
 
   --green: #5c7a29;
   --green-hover: #4f6b23;
@@ -52,7 +52,6 @@
   --r-lg: 22px;
   --r-pill: 999px;
 
-  /* UA hint */
   color-scheme: light;
 }
 
@@ -69,7 +68,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  position: relative; /* for glow overlay stacking */
+  /* glow vars default */
+  --mx: 50vw;
+  --my: 20vh;
+
+  /* create a clean stacking context */
+  position: relative;
+  isolation: isolate;
 }
 
 /* =========================
@@ -81,28 +86,22 @@ body::before{
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;              /* safely behind all content */
+  opacity: 0;               /* off until mouse moves */
+  transition: opacity 220ms ease;
 
+  /* NO calc() with custom properties (can fail in some browsers) */
   background:
-    radial-gradient(420px 420px at var(--mx, 50vw) var(--my, 20vh),
+    radial-gradient(420px 420px at var(--mx) var(--my),
       rgba(132,169,140,0.18),
       transparent 60%),
-    radial-gradient(520px 520px at calc(var(--mx, 50vw) + 120px) calc(var(--my, 20vh) + 80px),
+    radial-gradient(560px 560px at var(--mx) var(--my),
       rgba(255,209,102,0.14),
-      transparent 62%);
-
-  opacity: 0;
-  transition: opacity 200ms ease;
+      transparent 70%);
 }
 
 body.has-mouse::before{
   opacity: 1;
-}
-
-/* Keep all page content above the glow overlay */
-body > *{
-  position: relative;
-  z-index: 1;
 }
 
 /* Subtle premium selection */
@@ -137,8 +136,6 @@ h1, h2, h3 {
   font-family: 'Playfair Display', serif;
   color: var(--heading);
   margin-bottom: 0.5rem;
-
-  /* readability polish */
   line-height: 1.15;
   letter-spacing: -0.01em;
 }
@@ -167,7 +164,6 @@ a:hover { text-decoration: underline; }
   width: 100%;
   overflow: hidden;
 }
-
 .banner {
   width: 100%;
   max-height: 200px;
@@ -185,7 +181,6 @@ a:hover { text-decoration: underline; }
   text-align: center;
   border-bottom: 4px solid var(--leaf-border);
 
-  /* layered background for "pop" */
   background:
     radial-gradient(1200px 500px at 20% 10%, rgba(132,169,140,0.35), transparent 60%),
     radial-gradient(900px 500px at 80% 30%, rgba(255,209,102,0.28), transparent 65%),
@@ -215,8 +210,6 @@ a:hover { text-decoration: underline; }
   max-width: 200px;
   width: 80%;
   margin: 0 auto;
-
-  /* upgraded shadow */
   filter: drop-shadow(0 10px 18px rgba(0,0,0,0.20));
   transform: translateZ(0);
 }
@@ -284,13 +277,11 @@ a:hover { text-decoration: underline; }
   box-shadow: 0 10px 18px rgba(0,0,0,0.10);
 }
 
-/* Primary: bold gradient */
 .btn.primary {
   background: linear-gradient(135deg, var(--green), var(--green-hover));
   color: #ffffff !important;
 }
 
-/* Secondary: glassy but still on-brand */
 .btn.secondary {
   background: rgba(255,255,255,0.70);
   border: 1px solid rgba(47,62,70,0.12);
@@ -304,26 +295,19 @@ a:hover { text-decoration: underline; }
   box-shadow: var(--shadow-soft);
 }
 
-.btn:active {
-  transform: translateY(0px);
-}
+.btn:active { transform: translateY(0px); }
 
-/* Keep primary/secondary consistent on small UIs */
 .btn.primary:hover {
   background: linear-gradient(135deg, var(--green-hover), var(--green));
 }
 
-.btn.secondary:hover {
-  border-color: rgba(92,122,41,0.35);
-}
+.btn.secondary:hover { border-color: rgba(92,122,41,0.35); }
 
-/* Better keyboard focus for buttons */
 .btn:focus-visible{
   outline: 3px solid rgba(255, 209, 102, 0.65);
   outline-offset: 3px;
 }
 
-/* Disabled state */
 .btn[aria-disabled="true"],
 .btn:disabled{
   opacity: .6;
@@ -339,14 +323,11 @@ a:hover { text-decoration: underline; }
   position: sticky;
   top: 0;
   z-index: 50;
-
-  /* fallback is slightly stronger for browsers that ignore blur */
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(47,62,70,0.10);
 }
 
-/* nav inner wrapper + brand (for index.html) */
 .nav-inner{
   width: var(--container-pad);
   max-width: var(--container);
@@ -391,7 +372,6 @@ a:hover { text-decoration: underline; }
 .site-nav a {
   color: var(--green);
   font-weight: 700;
-
   border-radius: 12px;
   padding: .5rem .75rem;
   transition: background 160ms ease, transform 160ms ease;
@@ -403,7 +383,6 @@ a:hover { text-decoration: underline; }
   transform: translateY(-1px);
 }
 
-/* Optional active state used by your JS */
 .site-nav a.is-active{
   background: rgba(132,169,140,0.18);
 }
@@ -426,7 +405,6 @@ a:hover { text-decoration: underline; }
   background-color: var(--bg);
 }
 
-/* Your recipes section in HTML has no class, so target by id */
 #recipes {
   padding: 2rem 1rem;
   background-color: var(--panel);
@@ -434,9 +412,7 @@ a:hover { text-decoration: underline; }
 }
 
 .success,
-.links {
-  text-align: center;
-}
+.links { text-align: center; }
 
 .about .container,
 .success p,
@@ -449,14 +425,10 @@ a:hover { text-decoration: underline; }
 
 /* Readability: avoid overly long lines
    NOTE: exclude grid card text so cards don't look "skinny" */
-p, li{
-  max-width: 70ch;
-}
+p, li{ max-width: 70ch; }
 .recipe-card p,
 .feature p,
-.resource-links li{
-  max-width: none;
-}
+.resource-links li{ max-width: none; }
 
 /* Headings centered + POP underline */
 section h2 {
@@ -465,8 +437,6 @@ section h2 {
   display: inline-block;
   padding-bottom: .35rem;
 }
-
-/* Replace the plain divider with a richer underline */
 section h2::after {
   content: "";
   display: block;
@@ -486,12 +456,8 @@ section h2::after {
   display: grid;
   gap: .6rem;
 }
-.steps li{
-  color: var(--muted);
-}
-.steps strong{
-  color: var(--heading);
-}
+.steps li{ color: var(--muted); }
+.steps strong{ color: var(--heading); }
 
 /* =========================
    Features grid (POP cards)
@@ -544,7 +510,7 @@ section h2::after {
   opacity: 0.8;
 }
 
-/* Wins strip (for index.html) */
+/* Wins strip */
 .wins{
   margin-top: 1.25rem;
   display:grid;
@@ -596,7 +562,7 @@ section h2::after {
 }
 
 /* =========================
-   Recipe cards (home + recipes page) (POP)
+   Recipe cards
    ========================= */
 .recipe-grid {
   display: grid;
@@ -616,7 +582,6 @@ section h2::after {
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-/* Reduce layout shift: reserve space with aspect ratio */
 .recipe-card img {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -641,9 +606,7 @@ section h2::after {
   background: #eef7ea;
 }
 
-.recipe-card:hover img {
-  transform: scale(1.06);
-}
+.recipe-card:hover img { transform: scale(1.06); }
 
 /* More recipes button */
 .more-recipes {
@@ -681,13 +644,8 @@ section h2::after {
   text-align: left;
 }
 
-.resource-links li {
-  margin-bottom: 0.5rem;
-}
-
-.resource-links a {
-  font-weight: 700;
-}
+.resource-links li { margin-bottom: 0.5rem; }
+.resource-links a { font-weight: 700; }
 
 /* =========================
    Contact form (POP)
@@ -695,7 +653,6 @@ section h2::after {
 .contact-wrapper {
   max-width: 600px;
   margin: 0 auto;
-
   border-radius: var(--r-lg);
   border: 1px solid rgba(47,62,70,0.10);
   box-shadow: 0 12px 26px rgba(0,0,0,0.08);
@@ -704,7 +661,6 @@ section h2::after {
   padding: 1.25rem;
 }
 
-/* Contact highlight pill (for index.html) */
 .contact-highlight{
   display:inline-block;
   margin-top:.25rem;
@@ -739,7 +695,6 @@ section h2::after {
   color: var(--heading);
 }
 
-/* Stronger focus feel for inputs/select/textarea */
 .contact-form input:focus-visible,
 .contact-form textarea:focus-visible,
 .contact-form select:focus-visible{
@@ -767,7 +722,6 @@ section h2::after {
 
 .contact-follow { margin-top: 1rem; }
 
-/* Fine print */
 .fine-print{
   margin-top: .75rem;
   font-size: .92rem;
@@ -784,24 +738,26 @@ footer {
   text-align: center;
 }
 
+footer .footer-content{
+  text-align: center;
+}
+
 footer .footer-content p {
   margin-bottom: 0.5rem;
   color: var(--heading);
-}
-
-footer a {
-  color: var(--green);
-  font-weight: 700;
 }
 
 /* FIX: footer was getting constrained by the 70ch rule */
 footer p,
 footer li{
   max-width: none;
-}
-footer .footer-content p{
   margin-left: auto;
   margin-right: auto;
+}
+
+footer a {
+  color: var(--green);
+  font-weight: 700;
 }
 
 /* =========================
@@ -851,7 +807,6 @@ footer .footer-content p{
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* Seatbelt for images inside recipe pages */
 .recipe-page img {
   width: 100%;
   max-width: 720px;
@@ -915,7 +870,7 @@ textarea:focus-visible {
   border-radius: 8px;
 }
 
-/* THANK YOU page styling (matches your site) */
+/* THANK YOU page styling */
 .thank-you {
   padding: 2.5rem 1rem;
   background: var(--panel);
@@ -943,7 +898,7 @@ textarea:focus-visible {
   flex-wrap: wrap;
 }
 
-/* Scroll reveal classes (used by the JS I gave you) */
+/* Scroll reveal */
 .reveal {
   opacity: 0;
   transform: translateY(14px);
@@ -966,7 +921,7 @@ textarea:focus-visible {
   }
 }
 
-/* Touch devices: reduce hover "jumpiness" + disable glow */
+/* Touch devices: reduce hover jumpiness + disable glow */
 @media (hover: none){
   .btn:hover,
   .feature:hover,
@@ -979,12 +934,8 @@ textarea:focus-visible {
 
 /* Small-screen hero spacing */
 @media (max-width: 420px) {
-  .hero {
-    padding: 2.25rem 1rem;
-  }
-  h1 {
-    font-size: 2.1rem;
-  }
+  .hero { padding: 2.25rem 1rem; }
+  h1 { font-size: 2.1rem; }
 }
 
 /* Responsive nav stacking */
