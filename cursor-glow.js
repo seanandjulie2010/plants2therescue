@@ -1,7 +1,7 @@
 (function() {
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none)').matches;
-  if (prefersReduced || isTouch) return;
+ // i
 
   const root = document.body;
   root.classList.add('has-mouse');
