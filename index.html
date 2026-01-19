@@ -533,7 +533,13 @@
       });
     })();
   </script>
-  <script src="cursor-glow.js"></script>
+  
+  <style>
+body.has-mouse::before {
+  opacity: 1 !important;
+  display: block !important;
+}</style>
+<script src="cursor-glow.js"></script>
 
 </body>
 </html>
