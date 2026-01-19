@@ -1,7 +1,7 @@
 /* =========================
    Plants 2 the Rescue - style.css (clean + consistent + POP)
-   FIXED: site-wide cursor glow reliably shows across ALL sections
-   + keeps accessibility + layout polish
+   FIXED: site-wide centering for recipes.html + ALL recipe pages
+   + keeps cursor glow + accessibility + layout polish
    ========================= */
 
 /* Base styles */
@@ -103,7 +103,7 @@ body.has-mouse::before{
 }
 
 /* Ensure main page content always sits ABOVE the glow */
-header, nav, main, footer {
+header, nav, main, footer, section {
   position: relative;
   z-index: 1;
 }
@@ -156,11 +156,19 @@ a {
 }
 a:hover { text-decoration: underline; }
 
-/* Containers */
+/* =========================
+   Containers (FIXED centering system)
+   ========================= */
 .container {
   width: var(--container-pad);
   max-width: var(--container);
   margin: 0 auto;
+}
+
+/* A reliable centered wrapper you can apply anywhere */
+.page-wrap {
+  width: min(var(--container), 100% - 2rem);
+  margin-inline: auto;
 }
 
 /* Decorative banner */
@@ -402,8 +410,6 @@ a:hover { text-decoration: underline; }
   padding: 2rem 1rem;
   background-color: var(--panel);
   border-bottom: 1px solid var(--line);
-
-  /* Let glow softly show through */
   background-image: linear-gradient(0deg, rgba(255,255,255,0.88), rgba(255,255,255,0.88));
 }
 
@@ -528,6 +534,14 @@ section h2::after {
   color: var(--heading);
 }
 
+/* =========================
+   Recipes list page (recipes.html) — CENTERED FIX
+   ========================= */
+.recipe-content {
+  width: min(var(--container), 100% - 2rem);
+  margin-inline: auto;
+}
+
 /* Recipe Filters */
 .recipe-filters {
   display: flex;
@@ -560,7 +574,7 @@ section h2::after {
   border-color: var(--green);
 }
 
-/* Recipe cards */
+/* Recipe cards grid */
 .recipe-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -747,11 +761,13 @@ footer a {
   font-weight: 700;
 }
 
-/* Recipe Page */
+/* =========================
+   Recipe Page (single recipe pages) — CENTERED FIX
+   ========================= */
 .recipe-page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1.25rem 3rem;
+  width: min(900px, 100% - 2rem);
+  margin-inline: auto;
+  padding: 2rem 0 3rem;
 }
 
 .recipe-header { text-align: center; margin-bottom: 1.5rem; }
@@ -759,6 +775,8 @@ footer a {
 
 .recipe-content { display: grid; gap: 1.25rem; }
 
+/* If you use .recipe-card on recipe pages too, keep it as-is from above.
+   Otherwise, these blocks provide the “card” look for older recipe pages. */
 .recipe-block {
   background: #fff;
   border-radius: var(--r-md);
@@ -784,7 +802,8 @@ footer a {
 
 .recipe-footer { margin-top: 2rem; text-align: center; }
 
-.recipe-hero {
+.recipe-hero,
+.recipe-hero-img {
   width: 100%;
   max-width: 720px;
   margin: 1.5rem auto 2rem;
@@ -792,12 +811,9 @@ footer a {
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-.recipe-page img {
-  width: 100%;
-  max-width: 720px;
-  margin: 1.5rem auto;
-}
+/* IMPORTANT: removed the overly-broad .recipe-page img rule that could cause layout oddities */
 
+/* Back + Print buttons */
 .back-link {
   display: inline-block;
   font-weight: 700;
@@ -860,8 +876,6 @@ textarea:focus-visible {
   padding: 2.5rem 1rem;
   background: var(--panel);
   border-bottom: 1px solid var(--line);
-
-  /* keep glow subtle here too */
   background-image: linear-gradient(0deg, rgba(255,255,255,0.88), rgba(255,255,255,0.88));
 }
 
