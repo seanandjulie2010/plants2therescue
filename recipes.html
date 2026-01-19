@@ -27,22 +27,6 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    .skip-link {
-      position: absolute;
-      left: -999px;
-      top: 0;
-      background: #ffffff;
-      color: #2f3e46;
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-      z-index: 9999;
-    }
-    .skip-link:focus {
-      left: 1rem;
-      top: 1rem;
-    }
-
     /* Accessibility helper */
     .sr-only {
       position: absolute;
@@ -76,231 +60,232 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<main id="main" class="recipe-page">
+<!-- IMPORTANT: this page is the recipe INDEX, so use recipes-page (not recipe-page) -->
+<main id="main" class="recipes-page">
 
-<header class="recipe-header">
-  <h1>Plants 2 the Rescue</h1>
-  <h2>All Recipes</h2>
-  <p class="recipe-subtitle">Whole-food, plant-based, simple nourishment.</p>
+  <header class="recipe-header">
+    <h1>Plants 2 the Rescue</h1>
+    <h2>All Recipes</h2>
+    <!-- Keep the class "tagline" so CSS can perfectly center this line -->
+    <p class="tagline recipe-subtitle">Whole-food, plant-based, simple nourishment.</p>
 
-  <div style="margin-top: 1rem;">
-    <a class="back-link" href="index.html">← Back to Home</a>
-  </div>
-</header>
+    <div style="margin-top: 1rem;">
+      <a class="back-link" href="index.html">← Back to Home</a>
+    </div>
+  </header>
 
-<section class="recipe-content" aria-label="Recipe filters and recipe list">
+  <!-- IMPORTANT: use a dedicated wrapper so it doesn’t conflict with single recipe pages -->
+  <section class="recipes-content" aria-label="Recipe filters and recipe list">
 
-<div class="recipe-filters" role="tablist" aria-label="Filter recipes">
-  <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
-  <button class="filter-btn" data-filter="main">Bowls &amp; Mains</button>
-  <button class="filter-btn" data-filter="breakfast">Breakfast</button>
-  <button class="filter-btn" data-filter="dessert">Desserts</button>
-  <button class="filter-btn" data-filter="snack">Snacks &amp; Energy</button>
-  <button class="filter-btn" data-filter="drink">Drinks</button>
-  <button class="filter-btn" data-filter="holiday">Holiday</button>
-</div>
+    <div class="recipe-filters" role="tablist" aria-label="Filter recipes">
+      <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter-btn" data-filter="main" aria-pressed="false">Bowls &amp; Mains</button>
+      <button class="filter-btn" data-filter="breakfast" aria-pressed="false">Breakfast</button>
+      <button class="filter-btn" data-filter="dessert" aria-pressed="false">Desserts</button>
+      <button class="filter-btn" data-filter="snack" aria-pressed="false">Snacks &amp; Energy</button>
+      <button class="filter-btn" data-filter="drink" aria-pressed="false">Drinks</button>
+      <button class="filter-btn" data-filter="holiday" aria-pressed="false">Holiday</button>
+    </div>
 
-<!-- Search + Sort -->
-<div class="recipe-tools" style="max-width: 820px; margin: 1rem auto 0; display: flex; gap: .75rem; align-items: center; justify-content: center; flex-wrap: wrap;">
-  <label for="recipe-search" class="sr-only">Search recipes</label>
-  <input
-    id="recipe-search"
-    type="search"
-    placeholder="Search recipes…"
-    autocomplete="off"
-    style="width: min(520px, 92vw); padding: .7rem .9rem; border-radius: 12px; border: 1px solid rgba(0,0,0,.15); font: inherit;"
-  />
+    <!-- Search + Sort -->
+    <div class="recipe-controls">
+      <label for="recipe-search" class="sr-only">Search recipes</label>
+      <input
+        id="recipe-search"
+        type="search"
+        placeholder="Search recipes…"
+        autocomplete="off"
+      />
 
-  <button
-    id="sort-toggle"
-    type="button"
-    class="filter-btn"
-    aria-pressed="false"
-    style="white-space: nowrap;"
-    title="Toggle sort order"
-  >
-    Sort: A–Z
-  </button>
-</div>
+      <button
+        id="sort-toggle"
+        type="button"
+        class="filter-btn"
+        aria-pressed="false"
+        title="Toggle sort order"
+      >
+        Sort: A–Z
+      </button>
+    </div>
 
-<p id="recipe-count" style="text-align:center; margin-top:.25rem; opacity:.85;"></p>
+    <p id="recipe-count" class="recipe-count"></p>
 
-<div class="recipe-grid" aria-live="polite">
+    <div class="recipe-grid" aria-live="polite">
 
-<!-- MAINS -->
-<a href="recipe-sweet-potato-dumplings.html" class="recipe-card" data-category="main">
-  <img src="sweet-potato-dumplings.png" alt="Sweet potato dumplings" loading="lazy">
-  <h3>Sweet Potato Dumplings</h3>
-  <p>Comforting, tender dumplings with a naturally sweet and savory filling.</p>
-</a>
+      <!-- MAINS -->
+      <a href="recipe-sweet-potato-dumplings.html" class="recipe-card" data-category="main">
+        <img src="sweet-potato-dumplings.png" alt="Sweet potato dumplings" loading="lazy">
+        <h3>Sweet Potato Dumplings</h3>
+        <p>Comforting, tender dumplings with a naturally sweet and savory filling.</p>
+      </a>
 
-<a href="recipe1.html" class="recipe-card" data-category="main">
-  <img src="recipe1-bowl.jpg.png" alt="Rainbow Avocado Chickpea Power Bowl" loading="lazy">
-  <h3>Rainbow Avocado Chickpea Power Bowl</h3>
-  <p>Colorful, satisfying and packed with fiber and protein.</p>
-</a>
+      <a href="recipe1.html" class="recipe-card" data-category="main">
+        <img src="recipe1-bowl.jpg.png" alt="Rainbow Avocado Chickpea Power Bowl" loading="lazy">
+        <h3>Rainbow Avocado Chickpea Power Bowl</h3>
+        <p>Colorful, satisfying and packed with fiber and protein.</p>
+      </a>
 
-<a href="recipe-potato-al-pastor.html" class="recipe-card" data-category="main">
-  <img src="potato-al-pastor.png" alt="Smoky Lime Potato Al Pastor Skillet" loading="lazy">
-  <h3>Smoky Lime Potato Al Pastor Skillet</h3>
-  <p>Smoky, citrusy, and caramelized—bold Mexican-inspired potatoes.</p>
-</a>
+      <a href="recipe-potato-al-pastor.html" class="recipe-card" data-category="main">
+        <img src="potato-al-pastor.png" alt="Smoky Lime Potato Al Pastor Skillet" loading="lazy">
+        <h3>Smoky Lime Potato Al Pastor Skillet</h3>
+        <p>Smoky, citrusy, and caramelized—bold Mexican-inspired potatoes.</p>
+      </a>
 
-<a href="recipe-vegan-orange-spanish-rice.html" class="recipe-card" data-category="main">
-  <img src="Vegan-Orange-Spanish-Rice.png" alt="Vegan Orange Spanish Rice" loading="lazy">
-  <h3>Vegan Orange Spanish Rice</h3>
-  <p>Spanish-style rice with Brazilian orange sunshine.</p>
-</a>
+      <a href="recipe-vegan-orange-spanish-rice.html" class="recipe-card" data-category="main">
+        <img src="Vegan-Orange-Spanish-Rice.png" alt="Vegan Orange Spanish Rice" loading="lazy">
+        <h3>Vegan Orange Spanish Rice</h3>
+        <p>Spanish-style rice with Brazilian orange sunshine.</p>
+      </a>
 
-<a href="recipe2.html" class="recipe-card" data-category="main">
-  <img src="recipe2-bowl.jpg.png" alt="Hearty Lentil & Mushroom Shepherd’s Pie" loading="lazy">
-  <h3>Hearty Lentil &amp; Mushroom Shepherd’s Pie</h3>
-  <p>Comfort food made with wholesome, everyday ingredients.</p>
-</a>
+      <a href="recipe2.html" class="recipe-card" data-category="main">
+        <img src="recipe2-bowl.jpg.png" alt="Hearty Lentil & Mushroom Shepherd’s Pie" loading="lazy">
+        <h3>Hearty Lentil &amp; Mushroom Shepherd’s Pie</h3>
+        <p>Comfort food made with wholesome, everyday ingredients.</p>
+      </a>
 
-<a href="recipe-afghan-style-turnip-qorma.html" class="recipe-card" data-category="main">
-  <img src="Afghan-Style-Turnip-Qorma.png" alt="Afghan-style turnip qorma in a patterned bowl with tomato sauce and herbs" loading="lazy">
-  <h3>Afghan-Style Turnip Qorma</h3>
-  <p>Slow-simmered turnips in a warming Afghan-inspired tomato and spice sauce.</p>
-</a>
+      <a href="recipe-afghan-style-turnip-qorma.html" class="recipe-card" data-category="main">
+        <img src="Afghan-Style-Turnip-Qorma.png" alt="Afghan-style turnip qorma in a patterned bowl with tomato sauce and herbs" loading="lazy">
+        <h3>Afghan-Style Turnip Qorma</h3>
+        <p>Slow-simmered turnips in a warming Afghan-inspired tomato and spice sauce.</p>
+      </a>
 
-<a href="recipe-svensk-kalrotgryta.html" class="recipe-card" data-category="main">
-  <img src="svensk-kalrotgryta.png" alt="Swedish rutabaga and white bean stew served with rye bread" loading="lazy">
-  <h3>Svensk Kålrotgryta</h3>
-  <p>Traditional-inspired Swedish rutabaga and white bean stew that is simple, nourishing, and comforting.</p>
-</a>
+      <a href="recipe-svensk-kalrotgryta.html" class="recipe-card" data-category="main">
+        <img src="svensk-kalrotgryta.png" alt="Swedish rutabaga and white bean stew served with rye bread" loading="lazy">
+        <h3>Svensk Kålrotgryta</h3>
+        <p>Traditional-inspired Swedish rutabaga and white bean stew that is simple, nourishing, and comforting.</p>
+      </a>
 
-<a href="recipe-mediterranean-lemon-herb-beets.html" class="recipe-card" data-category="main">
-  <img src="Mediterranean-Lemon-Herb-Beets.png" alt="Mediterranean lemon-herb beets with chickpeas, greens, and whole-grain pita" loading="lazy">
-  <h3>Mediterranean Lemon-Herb Beets</h3>
-  <p>Bright roasted beets with chickpeas, greens, and lemon—simple, nourishing Mediterranean comfort.</p>
-</a>
-  
-  <a href="recipe-mexican-acorn-squash-lime-soup.html" class="recipe-card" data-category="main" data-new="true">
-  <img src="Mexican-Acorn-Squash-Lime-Soup.png" alt="Mexican acorn squash and lime soup with avocado and radishes" loading="lazy">
-  <h3>Mexican Acorn Squash &amp; Lime Soup</h3>
-  <p>Cozy, Mexican-inspired acorn squash soup finished with fresh lime</p>
-</a>
+      <a href="recipe-mediterranean-lemon-herb-beets.html" class="recipe-card" data-category="main">
+        <img src="Mediterranean-Lemon-Herb-Beets.png" alt="Mediterranean lemon-herb beets with chickpeas, greens, and whole-grain pita" loading="lazy">
+        <h3>Mediterranean Lemon-Herb Beets</h3>
+        <p>Bright roasted beets with chickpeas, greens, and lemon—simple, nourishing Mediterranean comfort.</p>
+      </a>
 
-  <a href="recipe-lemon-tahini-kale.html"class="recipe-card"data-category="main"data-new="true">
-  <img src="Lemon-Tahini-Kale.png" alt="Lemon-tahini kale with warm chickpeas served alongside brown rice and flatbread" loading="lazy">
-  <h3>Lemon–Tahini Kale with Warm Chickpeas</h3>
-  <p>Bright Mediterranean kale with creamy lemon-tahini sauce and comforting chickpeas.</p>
-</a>
+      <a href="recipe-mexican-acorn-squash-lime-soup.html" class="recipe-card" data-category="main" data-new="true">
+        <img src="Mexican-Acorn-Squash-Lime-Soup.png" alt="Mexican acorn squash and lime soup with avocado and radishes" loading="lazy">
+        <h3>Mexican Acorn Squash &amp; Lime Soup</h3>
+        <p>Cozy, Mexican-inspired acorn squash soup finished with fresh lime</p>
+      </a>
 
-<!-- BREAKFAST & SNACKS -->
-<a href="recipe3.html" class="recipe-card" data-category="breakfast snack">
-  <img src="recipe3-bowl.jpg.png" alt="Baked Apple Cinnamon Oat Cups" loading="lazy">
-  <h3>Baked Apple Cinnamon Oat Cups</h3>
-  <p>Perfect for breakfast or a grab-and-go snack.</p>
-</a>
+      <a href="recipe-lemon-tahini-kale.html" class="recipe-card" data-category="main" data-new="true">
+        <img src="Lemon-Tahini-Kale.png" alt="Lemon-tahini kale with warm chickpeas served alongside brown rice and flatbread" loading="lazy">
+        <h3>Lemon–Tahini Kale with Warm Chickpeas</h3>
+        <p>Bright Mediterranean kale with creamy lemon-tahini sauce and comforting chickpeas.</p>
+      </a>
 
-<a href="recipe-date-energy-bars.html" class="recipe-card" data-category="snack">
-  <img src="Date-Energy-Bars.png" alt="Date Energy Bars" loading="lazy">
-  <h3>Date Energy Bars</h3>
-  <p>A simple whole-food energy bar powered by dates, oats, and nuts.</p>
-</a>
+      <!-- BREAKFAST & SNACKS -->
+      <a href="recipe3.html" class="recipe-card" data-category="breakfast snack">
+        <img src="recipe3-bowl.jpg.png" alt="Baked Apple Cinnamon Oat Cups" loading="lazy">
+        <h3>Baked Apple Cinnamon Oat Cups</h3>
+        <p>Perfect for breakfast or a grab-and-go snack.</p>
+      </a>
 
-<!-- DESSERTS -->
-<a href="recipe-lime-donuts.html" class="recipe-card" data-category="dessert">
-  <img src="lime-donut.png" alt="Lime Bliss Donuts" loading="lazy">
-  <h3>Lime Bliss Donuts</h3>
-  <p>Baked donuts bursting with fresh lime brightness.</p>
-</a>
+      <a href="recipe-date-energy-bars.html" class="recipe-card" data-category="snack">
+        <img src="Date-Energy-Bars.png" alt="Date Energy Bars" loading="lazy">
+        <h3>Date Energy Bars</h3>
+        <p>A simple whole-food energy bar powered by dates, oats, and nuts.</p>
+      </a>
 
-<a href="lemon-cloud-cups.html" class="recipe-card" data-category="dessert">
-  <img src="lemon-cloud-cups.png" alt="Lemon Cloud Cups" loading="lazy">
-  <h3>Lemon Cloud Cups</h3>
-  <p>Bright, creamy, and refreshing.</p>
-</a>
+      <!-- DESSERTS -->
+      <a href="recipe-lime-donuts.html" class="recipe-card" data-category="dessert">
+        <img src="lime-donut.png" alt="Lime Bliss Donuts" loading="lazy">
+        <h3>Lime Bliss Donuts</h3>
+        <p>Baked donuts bursting with fresh lime brightness.</p>
+      </a>
 
-<a href="recipe-indonesian-nutmeg-comfort-pudding.html" class="recipe-card" data-category="dessert">
-  <img src="Indonesian-Nutmeg-Comfort-Pudding.png" alt="Nutmeg Comfort Pudding" loading="lazy">
-  <h3>Indonesian Nutmeg Comfort Pudding</h3>
-  <p>Warm, cozy Indonesian-inspired pudding.</p>
-</a>
+      <a href="lemon-cloud-cups.html" class="recipe-card" data-category="dessert">
+        <img src="lemon-cloud-cups.png" alt="Lemon Cloud Cups" loading="lazy">
+        <h3>Lemon Cloud Cups</h3>
+        <p>Bright, creamy, and refreshing.</p>
+      </a>
 
-<a href="Matcha-Green-Tea-Pudding.html" class="recipe-card" data-category="dessert">
-  <img src="Matcha-Pudding.png" alt="Matcha Green Tea Pudding" loading="lazy">
-  <h3>Vegan Matcha Green Tea Pudding</h3>
-  <p>Creamy, gently sweet matcha pudding.</p>
-</a>
+      <a href="recipe-indonesian-nutmeg-comfort-pudding.html" class="recipe-card" data-category="dessert">
+        <img src="Indonesian-Nutmeg-Comfort-Pudding.png" alt="Nutmeg Comfort Pudding" loading="lazy">
+        <h3>Indonesian Nutmeg Comfort Pudding</h3>
+        <p>Warm, cozy Indonesian-inspired pudding.</p>
+      </a>
 
-<a href="recipe-persian-walnut-cookies.html" class="recipe-card" data-category="dessert snack">
-  <img src="Persian-Walnut-cookies.png" alt="Persian Walnut Cookies" loading="lazy">
-  <h3>Persian Walnut &amp; Cardamom Cookies</h3>
-  <p>Soft, fragrant Persian-inspired cookies.</p>
-</a>
+      <a href="Matcha-Green-Tea-Pudding.html" class="recipe-card" data-category="dessert">
+        <img src="Matcha-Pudding.png" alt="Matcha Green Tea Pudding" loading="lazy">
+        <h3>Vegan Matcha Green Tea Pudding</h3>
+        <p>Creamy, gently sweet matcha pudding.</p>
+      </a>
 
-<a href="recipe-grapefruit-cheesecake.html" class="recipe-card" data-category="dessert">
-  <img src="grapefruit-cheesecake.png" alt="Grapefruit Cheesecake" loading="lazy">
-  <h3>Decadent Grapefruit Cheesecake</h3>
-  <p>Bright, creamy, citrus-forward cheesecake.</p>
-</a>
+      <a href="recipe-persian-walnut-cookies.html" class="recipe-card" data-category="dessert snack">
+        <img src="Persian-Walnut-cookies.png" alt="Persian Walnut Cookies" loading="lazy">
+        <h3>Persian Walnut &amp; Cardamom Cookies</h3>
+        <p>Soft, fragrant Persian-inspired cookies.</p>
+      </a>
 
-<a href="recipe-mind-blowing-lemon-dream-pie.html" class="recipe-card" data-category="dessert">
-  <img src="lemon-pie.png" alt="Lemon Dream Pie" loading="lazy">
-  <h3>Mind-Blowing Lemon Dream Pie</h3>
-  <p>Ultra-creamy with optional nut-free version.</p>
-</a>
+      <a href="recipe-grapefruit-cheesecake.html" class="recipe-card" data-category="dessert">
+        <img src="grapefruit-cheesecake.png" alt="Grapefruit Cheesecake" loading="lazy">
+        <h3>Decadent Grapefruit Cheesecake</h3>
+        <p>Bright, creamy, citrus-forward cheesecake.</p>
+      </a>
 
-<a href="recipe-mexican-butternut-squash-canela-pie.html" class="recipe-card" data-category="dessert" data-new="true">
-  <img src="Mexican-Butternut-Squash-Canela-Pie.png" alt="Mexican butternut squash canela pie with chocolate drizzle" loading="lazy">
-  <h3>Mexican Butternut Squash Canela Pie</h3>
-  <p>Warmly spiced butternut squash pie inspired by Mexican flavors.</p>
-</a>
+      <a href="recipe-mind-blowing-lemon-dream-pie.html" class="recipe-card" data-category="dessert">
+        <img src="lemon-pie.png" alt="Lemon Dream Pie" loading="lazy">
+        <h3>Mind-Blowing Lemon Dream Pie</h3>
+        <p>Ultra-creamy with optional nut-free version.</p>
+      </a>
 
-  <a href="recipe-mock-coconut-cream-pie.html" class="recipe-card" data-category="dessert" data-new="true">
-  <img src="Mock-Coconut-Cream-Pie.png" alt="Mock coconut cream pie made with spaghetti squash, topped with whipped cream" loading="lazy">
-  <h3>Mock Coconut Cream Pie</h3>
-  <p>Coconut-free coconut cream pie made with spaghetti squash—creamy, comforting, and surprisingly classic.</p>
-</a>
+      <a href="recipe-mexican-butternut-squash-canela-pie.html" class="recipe-card" data-category="dessert" data-new="true">
+        <img src="Mexican-Butternut-Squash-Canela-Pie.png" alt="Mexican butternut squash canela pie with chocolate drizzle" loading="lazy">
+        <h3>Mexican Butternut Squash Canela Pie</h3>
+        <p>Warmly spiced butternut squash pie inspired by Mexican flavors.</p>
+      </a>
 
-<!-- CAKES -->
-<a href="recipe-blood-orange-upside-down-cake.html" class="recipe-card" data-category="dessert">
-  <img src="blood-orange-upsidedown-cake.png" alt="Blood Orange Cake" loading="lazy">
-  <h3>Blood Orange Upside-Down Cake</h3>
-  <p>Jewel-toned oranges caramelized naturally.</p>
-</a>
+      <a href="recipe-mock-coconut-cream-pie.html" class="recipe-card" data-category="dessert" data-new="true">
+        <img src="Mock-Coconut-Cream-Pie.png" alt="Mock coconut cream pie made with spaghetti squash, topped with whipped cream" loading="lazy">
+        <h3>Mock Coconut Cream Pie</h3>
+        <p>Coconut-free coconut cream pie made with spaghetti squash—creamy, comforting, and surprisingly classic.</p>
+      </a>
 
-<a href="recipe-persimmon-tahini-cake.html" class="recipe-card" data-category="dessert">
-  <img src="persimmon-tahini-cake.png" alt="Persimmon Tahini Cake" loading="lazy">
-  <h3>Persimmon–Tahini Covenant Cake</h3>
-  <p>Middle Eastern–inspired, oil-free and naturally sweet.</p>
-</a>
+      <!-- CAKES -->
+      <a href="recipe-blood-orange-upside-down-cake.html" class="recipe-card" data-category="dessert">
+        <img src="blood-orange-upsidedown-cake.png" alt="Blood Orange Cake" loading="lazy">
+        <h3>Blood Orange Upside-Down Cake</h3>
+        <p>Jewel-toned oranges caramelized naturally.</p>
+      </a>
 
-<a href="cranberry.html" class="recipe-card" data-category="dessert holiday">
-  <img src="Cranberry.jpg" alt="Cranberry Covenant Cake" loading="lazy">
-  <h3>Cranberry Covenant Cake</h3>
-  <p>A tart-sweet whole-food vegan cake.</p>
-</a>
+      <a href="recipe-persimmon-tahini-cake.html" class="recipe-card" data-category="dessert">
+        <img src="persimmon-tahini-cake.png" alt="Persimmon Tahini Cake" loading="lazy">
+        <h3>Persimmon–Tahini Covenant Cake</h3>
+        <p>Middle Eastern–inspired, oil-free and naturally sweet.</p>
+      </a>
 
-<!-- HOLIDAY -->
-<a href="recipe-rustic-italian-chestnut-tart.html" class="recipe-card" data-category="dessert holiday">
-  <img src="Rustic-Italian-Chestnut-&-Vanilla-Tart.png" alt="Chestnut Tart" loading="lazy">
-  <h3>Rustic Italian Chestnut &amp; Vanilla Tart</h3>
-  <p>Earthy roasted chestnuts and vanilla warmth.</p>
-</a>
+      <a href="cranberry.html" class="recipe-card" data-category="dessert holiday">
+        <img src="Cranberry.jpg" alt="Cranberry Covenant Cake" loading="lazy">
+        <h3>Cranberry Covenant Cake</h3>
+        <p>A tart-sweet whole-food vegan cake.</p>
+      </a>
 
-<a href="recipe-vegan-eggnog-holiday-cake.html" class="recipe-card" data-category="dessert holiday""true">
-  <img src="Vegan-Eggnog-Holiday-Cake.png" alt="Eggnog Cake" loading="lazy">
-  <h3>Vegan Eggnog Holiday Cake</h3>
-  <p>Moist, cozy, warmly spiced.</p>
-</a>
+      <!-- HOLIDAY -->
+      <a href="recipe-rustic-italian-chestnut-tart.html" class="recipe-card" data-category="dessert holiday">
+        <img src="Rustic-Italian-Chestnut-&-Vanilla-Tart.png" alt="Chestnut Tart" loading="lazy">
+        <h3>Rustic Italian Chestnut &amp; Vanilla Tart</h3>
+        <p>Earthy roasted chestnuts and vanilla warmth.</p>
+      </a>
 
-<a href="recipe-vegan-eggnog.html" class="recipe-card" data-category="drink holiday""true">
-  <img src="Vegan-Eggnog.png" alt="Vegan Eggnog" loading="lazy">
-  <h3>Sugar-Free Vegan Eggnog</h3>
-  <p>Creamy, cozy, naturally sweetened.</p>
-</a>
+      <a href="recipe-vegan-eggnog-holiday-cake.html" class="recipe-card" data-category="dessert holiday">
+        <img src="Vegan-Eggnog-Holiday-Cake.png" alt="Eggnog Cake" loading="lazy">
+        <h3>Vegan Eggnog Holiday Cake</h3>
+        <p>Moist, cozy, warmly spiced.</p>
+      </a>
 
-</div>
+      <a href="recipe-vegan-eggnog.html" class="recipe-card" data-category="drink holiday">
+        <img src="Vegan-Eggnog.png" alt="Vegan Eggnog" loading="lazy">
+        <h3>Sugar-Free Vegan Eggnog</h3>
+        <p>Creamy, cozy, naturally sweetened.</p>
+      </a>
 
-<p id="no-results" style="display:none; text-align:center; margin-top:1rem; opacity:.85;">
-  No recipes match this filter yet.
-</p>
+    </div>
 
-</section>
+    <p id="no-results" style="display:none; text-align:center; margin-top:1rem; opacity:.85;">
+      No recipes match this filter yet.
+    </p>
+
+  </section>
 </main>
 
 <script>
@@ -318,9 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let sortDir = "asc"; // asc = A–Z, desc = Z–A
   let query = "";
 
-  /* ===============================
-     NEW BADGE
-     =============================== */
+  /* NEW BADGE */
   function applyNewBadges() {
     cards.forEach(card => {
       const isNew = card.getAttribute("data-new") === "true";
@@ -339,9 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ===============================
-     TITLE NORMALIZATION FOR SORTING
-     =============================== */
+  /* TITLE NORMALIZATION FOR SORTING */
   function normalizeTitle(title) {
     return title
       .toLowerCase()
@@ -357,9 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return normalizeTitle(h3 ? h3.textContent : "");
   }
 
-  /* ===============================
-     SORT (GLOBAL)
-     =============================== */
+  /* SORT (GLOBAL) */
   function sortCards() {
     cards.sort((a, b) => {
       const aTitle = getTitleForSort(a);
@@ -372,9 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cards.forEach(c => grid.appendChild(c));
   }
 
-  /* ===============================
-     FILTER + SEARCH RENDER
-     =============================== */
+  /* FILTER + SEARCH */
   function matchesFilter(card) {
     if (activeFilter === "all") return true;
     const categories = (card.dataset.category || "").split(" ");
@@ -401,9 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
     noResults.style.display = visible === 0 ? "block" : "none";
   }
 
-  /* ===============================
-     EVENTS
-     =============================== */
+  /* EVENTS */
   filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       activeFilter = btn.dataset.filter;
@@ -438,16 +413,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ===============================
-     INIT
-     =============================== */
+  /* INIT */
   applyNewBadges();
-  sortCards();  // initial A–Z
-  render();     // default filter = all, empty search
+  sortCards();
+  render();
 });
-  
 </script>
-    <script src="cursor-glow.js"></script>
+
+<script src="cursor-glow.js"></script>
 
 </body>
 </html>
