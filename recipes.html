@@ -53,6 +53,16 @@
       color: #fff;
       vertical-align: middle;
     }
+
+    /* Make the search input match your site style without inline styles */
+    .recipe-controls input[type="search"]{
+      padding: .7rem .9rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.15);
+      font: inherit;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+    }
   </style>
 </head>
 
@@ -60,22 +70,22 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- IMPORTANT: this page is the recipe INDEX, so use recipes-page (not recipe-page) -->
+<!-- FIX: recipes INDEX uses recipes-page (not recipe-page) -->
 <main id="main" class="recipes-page">
 
   <header class="recipe-header">
     <h1>Plants 2 the Rescue</h1>
     <h2>All Recipes</h2>
-    <!-- Keep the class "tagline" so CSS can perfectly center this line -->
-    <p class="tagline recipe-subtitle">Whole-food, plant-based, simple nourishment.</p>
+
+    <!-- FIX: use tagline so your CSS centers it perfectly -->
+    <p class="tagline">Whole-food, plant-based, simple nourishment.</p>
 
     <div style="margin-top: 1rem;">
       <a class="back-link" href="index.html">← Back to Home</a>
     </div>
   </header>
 
-  <!-- IMPORTANT: use a dedicated wrapper so it doesn’t conflict with single recipe pages -->
-  <section class="recipes-content" aria-label="Recipe filters and recipe list">
+  <section aria-label="Recipe filters and recipe list">
 
     <div class="recipe-filters" role="tablist" aria-label="Filter recipes">
       <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
@@ -87,7 +97,7 @@
       <button class="filter-btn" data-filter="holiday" aria-pressed="false">Holiday</button>
     </div>
 
-    <!-- Search + Sort -->
+    <!-- FIX: use recipe-controls so your CSS centers the row -->
     <div class="recipe-controls">
       <label for="recipe-search" class="sr-only">Search recipes</label>
       <input
@@ -108,6 +118,7 @@
       </button>
     </div>
 
+    <!-- FIX: use the class your CSS expects -->
     <p id="recipe-count" class="recipe-count"></p>
 
     <div class="recipe-grid" aria-live="polite">
@@ -300,10 +311,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const sortToggle = document.getElementById("sort-toggle");
 
   let activeFilter = "all";
-  let sortDir = "asc"; // asc = A–Z, desc = Z–A
+  let sortDir = "asc";
   let query = "";
 
-  /* NEW BADGE */
   function applyNewBadges() {
     cards.forEach(card => {
       const isNew = card.getAttribute("data-new") === "true";
@@ -322,14 +332,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* TITLE NORMALIZATION FOR SORTING */
   function normalizeTitle(title) {
     return title
       .toLowerCase()
-      .replace(
-        /^(the |vegan |sugar-free |sugar free |oil-free |oil free |plant-based |whole-food |whole food )+/i,
-        ""
-      )
+      .replace(/^(the |vegan |sugar-free |sugar free |oil-free |oil free |plant-based |whole-food |whole food )+/i, "")
       .trim();
   }
 
@@ -338,7 +344,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return normalizeTitle(h3 ? h3.textContent : "");
   }
 
-  /* SORT (GLOBAL) */
   function sortCards() {
     cards.sort((a, b) => {
       const aTitle = getTitleForSort(a);
@@ -351,7 +356,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cards.forEach(c => grid.appendChild(c));
   }
 
-  /* FILTER + SEARCH */
   function matchesFilter(card) {
     if (activeFilter === "all") return true;
     const categories = (card.dataset.category || "").split(" ");
@@ -378,7 +382,6 @@ document.addEventListener("DOMContentLoaded", () => {
     noResults.style.display = visible === 0 ? "block" : "none";
   }
 
-  /* EVENTS */
   filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       activeFilter = btn.dataset.filter;
@@ -413,7 +416,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* INIT */
   applyNewBadges();
   sortCards();
   render();
