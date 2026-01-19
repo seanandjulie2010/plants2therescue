@@ -1,6 +1,6 @@
 /* =========================
    Plants 2 the Rescue - style.css (clean + consistent + POP)
-   FIXED: site-wide centering for recipes.html + ALL recipe pages
+   FIXED: hero block is perfectly centered (logo/title/tagline/CTAs/badges/note)
    + keeps cursor glow + accessibility + layout polish
    ========================= */
 
@@ -184,20 +184,26 @@ a:hover { text-decoration: underline; }
 }
 
 /* =========================
-   Hero (POP)
+   Hero (POP) — TRUE CENTER FIX
    ========================= */
 .hero {
   position: relative;
   overflow: hidden;
   padding: 3rem 1rem;
-  text-align: center;
   border-bottom: 4px solid var(--leaf-border);
+
+  /* NEW: center the hero-content block perfectly */
+  display: flex;
+  justify-content: center;
 
   background:
     radial-gradient(1200px 500px at 20% 10%, rgba(132,169,140,0.35), transparent 60%),
     radial-gradient(900px 500px at 80% 30%, rgba(255,209,102,0.28), transparent 65%),
     linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,255,255,0.55));
   background-color: var(--hero);
+
+  /* keep text centered */
+  text-align: center;
 }
 
 /* subtle grain overlay */
@@ -214,8 +220,23 @@ a:hover { text-decoration: underline; }
 .hero-content {
   position: relative;
   z-index: 1;
+
+  /* keep your current constraints */
+  width: 100%;
   max-width: 900px;
   margin: 0 auto;
+
+  /* NEW: make the hero stack center as a single unit */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Optional safety: prevents any child from drifting left due to odd widths */
+.hero-content > *{
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero .logo {
@@ -773,10 +794,13 @@ footer a {
 .recipe-header { text-align: center; margin-bottom: 1.5rem; }
 .recipe-subtitle { margin-top: 0.25rem; font-size: 1rem; opacity: 0.85; }
 
-.recipe-content { display: grid; gap: 1.25rem; }
+/* NOTE: .recipe-content is used by recipes.html AND recipe pages.
+   Keep the width+center rule above, and only add layout here. */
+.recipe-content {
+  display: grid;
+  gap: 1.25rem;
+}
 
-/* If you use .recipe-card on recipe pages too, keep it as-is from above.
-   Otherwise, these blocks provide the “card” look for older recipe pages. */
 .recipe-block {
   background: #fff;
   border-radius: var(--r-md);
@@ -810,8 +834,6 @@ footer a {
   border-radius: var(--r-md);
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
-
-/* IMPORTANT: removed the overly-broad .recipe-page img rule that could cause layout oddities */
 
 /* Back + Print buttons */
 .back-link {
